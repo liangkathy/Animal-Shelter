@@ -1,0 +1,57 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid gray;
+    height: 720px;
+    flex-wrap: wrap;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 200px;
+    border-radius: 8px;
+}
+
+.signup-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.back-to-login {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+}
+
+.signup-button {
+    text-align: right;
+}
+
+.terms {
+    text-wrap: wrap;
+    text-align: center;
+}
+
+.state-zip {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5px;
+}
+
+.ic2-state {
+    width: 19%;
+}
+
+.ic2-zip {
+    width: 78%;
+}

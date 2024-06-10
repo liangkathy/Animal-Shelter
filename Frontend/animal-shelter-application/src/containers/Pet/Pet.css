@@ -1,0 +1,27 @@
+.pet-snapshot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    flex-basis: 25%;
+    padding: 10px;
+    position: relative;
+    border-radius: 8px;
+}
+
+.pet-snapshot-dark {
+    box-shadow: 0px 0 4px 1px white;
+}
+
+.pet-snapshot h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.meet-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}

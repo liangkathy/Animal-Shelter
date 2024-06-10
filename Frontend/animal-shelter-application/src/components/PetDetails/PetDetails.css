@@ -1,0 +1,24 @@
+.details-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 130px;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.pet-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.apply-link{
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+}

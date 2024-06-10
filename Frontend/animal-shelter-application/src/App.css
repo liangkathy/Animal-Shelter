@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  font-family: "Baloo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  width: 100vw;
+}
+
+section {
+  padding-bottom: 100%;
+  padding-left: 40px;
+  padding-right: 50px;
+}
+
+h4 {
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: rgb(54, 54, 54);
+  color: white;
+}
+
+.app-label {
+  font-size: 1.2em;
+  font-weight: 500;
+}

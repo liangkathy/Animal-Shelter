@@ -1,0 +1,25 @@
+
+.admin-signup-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid gray;
+    height: 650px;
+    flex-wrap: wrap;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 200px;
+    border-radius: 8px;
+}
+
+#admin-signup {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+#admin-su-button  {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}

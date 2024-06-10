@@ -1,0 +1,7 @@
+.heart-solid, .heart-outline {
+    color: rgb(197, 42, 18);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.admin-home {
+    padding-top: 80px;
+    text-align: center;
+    /* padding-bottom: 100%; */
+}
+
+.admin-tools-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.admin-tool {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    border: 1px solid gray;
+    box-shadow: 0px 0 4px 1px white;
+    border-radius: 10px;
+    flex-basis: 45%;
+    flex-grow: 1;
+}
+
+h5 {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0;
+}

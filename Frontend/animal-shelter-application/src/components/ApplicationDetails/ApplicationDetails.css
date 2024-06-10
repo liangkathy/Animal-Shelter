@@ -1,0 +1,19 @@
+.application-details-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 130px;
+}
+
+.application-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-q {
+    font-weight: 600;
+}
+
+.app-a {
+    margin-left: 15px
+}

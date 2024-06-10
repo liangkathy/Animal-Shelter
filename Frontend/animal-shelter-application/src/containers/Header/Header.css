@@ -1,0 +1,82 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    padding-right: 50px;
+    align-items: center;
+    height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+
+#logo-dark a:visited {
+    color: rgb(231, 236, 239);
+}
+.logo-dark a:hover {
+    color: rgb(155, 175, 184);
+    text-decoration: none;
+    text-align: center;
+}
+
+.logo-dark {
+    color: rgb(231, 236, 239);
+}
+
+.logo-light {
+    color: rgb(39, 67, 70);
+}
+
+#logo-light a:visited {
+    color: rgb(39, 67, 70);
+}
+
+.logo-light a:hover {
+    color: rgb(23, 28, 35);
+    text-decoration: none;
+    text-align: center;
+}
+
+#profile-icon:hover {
+    text-decoration: none;
+}
+
+#profile-icon:visited {
+    color: white;
+}
+
+.profile-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(255, 127, 80, 0.789);
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+}
+
+.profile-icon:hover {
+    background-color: lightcoral;
+    color:white;
+}
+
+.header-dark {
+    background-color: rgb(88, 88, 88);
+    color: white;
+}
+
+.header-light {
+    background-color: rgb(236, 236, 236);
+}
+
+/* header media query */
+@media screen and (min-width: 768px) {
+    .logo {
+        font-size: 1.6em;
+    }
+}

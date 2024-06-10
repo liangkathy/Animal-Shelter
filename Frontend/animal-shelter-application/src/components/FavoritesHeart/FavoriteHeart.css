@@ -1,0 +1,35 @@
+.favorite-heart {
+    position: absolute;
+    right: 75px;
+    top: 120px;
+}
+
+.heart-dark {
+    color: rgb(234, 238, 240);
+}
+
+.heart-light{
+    color: rgb(155, 175, 184);
+}
+
+.list-count {
+    position: absolute;
+    bottom: 15px;
+    right: 4px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count-dark {
+    background-color: rgb(155, 175, 184);
+    color: rgb(38, 47, 58)
+}
+
+.count-light {
+    background-color: rgb(38, 47, 58);
+    color: white;
+}

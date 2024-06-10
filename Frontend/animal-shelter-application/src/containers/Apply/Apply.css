@@ -1,0 +1,28 @@
+.apply-container, .apply-success {
+    padding-top: 80px;
+    text-align: center;
+}
+.application-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.question-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.apply-input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    max-width: 100%;
+    word-break:normal;
+}
+
+.multi-select {
+    color: black;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
