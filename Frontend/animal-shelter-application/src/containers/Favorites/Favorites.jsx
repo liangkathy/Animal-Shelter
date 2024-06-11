@@ -4,13 +4,14 @@ import { useEffect } from 'react'
 import { putData, getData } from "../../api/api"
 import Pet from '../Pet/Pet'
 import { calculateAge } from "../../utils/utils";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import { FavoritesContext } from '../../contexts/FavoritesContext'
 
 const Favorites = () => {
     const {theme} = useContext(ThemeContext)
     const [favoritePets, setFavoritePets] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const username = sessionStorage.getItem("username");
@@ -20,6 +21,9 @@ const Favorites = () => {
   
             if (response.hasError) {
                 console.log("message", response.message);
+                if (response.status == 401) {
+                    navigate("/accessdenied")
+                }
             }
             setFavoritePets(response.data)
         }

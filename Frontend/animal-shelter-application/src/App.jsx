@@ -12,7 +12,7 @@ import Profile from './containers/Profile/Profile'
 import Auth from './containers/Auth/Auth'
 import Admin from './containers/Admin/Admin'
 import ForgotPassword from './containers/ForgotPassword/ForgotPassword'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { ThemeContext } from './contexts/ThemeContext'
 import { AuthContext } from './contexts/AuthContext'
 import { useState, useEffect } from 'react'
@@ -20,7 +20,7 @@ import './App.css'
 import AdoptAll from './containers/Adopt/AdoptAll'
 import Favorites from './containers/Favorites/Favorites'
 import { AdminPathContext } from './contexts/AdminPathContext.js'
-import { getData } from "./api/api.js";
+import { getData, getDataPublic, verifyAdmin } from "./api/api.js";
 import { PetsContext } from './contexts/PetsContext.js'
 import { FavoritesContext } from './contexts/FavoritesContext.js'
 import Application from './containers/Application/Application.jsx'
@@ -33,17 +33,22 @@ import ForbiddenError from './containers/Error/ForbiddenError.jsx'
 import UnderConstruction from './containers/Error/UnderConstruction.jsx'
 import Microchip from './containers/Microchip/Microchip.jsx'
 import { UserPathContext } from './contexts/UserPathContext.js'
+import { components } from 'react-select'
+import AdminSignUp from './containers/Admin/AdminSignUp/AdminSignUp.jsx'
+import AdminPet from './containers/AdminPet/AdminPet.jsx'
 
 const App = () => {
+  const navigate = useNavigate()
   const[theme, setTheme] = useState("light")
   const[currentUsername, setCurrentUsername] = useState(null)
   const [isAdminPath, setIsAdminPath] = useState(false)
   const [isUserPath, setIsUserPath] = useState(true)
   const [allPets, setAllPets] = useState([])
+  const [isLogin, setIsLogin] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
-        const response = await getData("pets")
+        const response = await getDataPublic("pets")
         if (response.hasError) {
             console.log("message", response.message);
         }
@@ -53,8 +58,7 @@ const App = () => {
     fetchData();
   }, [])
 
-   const [favoritedPetIds, setFavoritedPetIds] = useState([])
-
+  const [favoritedPetIds, setFavoritedPetIds] = useState([])
 
   useEffect(() => {
     const username = sessionStorage.getItem("username");
@@ -64,6 +68,7 @@ const App = () => {
         
         if (response.hasError) {
             console.log("message", response.message);
+
         }
         //setFavoritePets(response.data)
         const petIds = response.data ? response.data.map(pet => pet.id.valueOf()): [];
@@ -92,8 +97,6 @@ const App = () => {
 
   }, [])
 
-  
-
   return (
     <ThemeContext.Provider value={{theme, setTheme}}>
       <AuthContext.Provider value={{currentUsername, setCurrentUsername}}>
@@ -102,12 +105,10 @@ const App = () => {
             <ApplicationsContext.Provider value={{applications, setApplications}}>
               <AdminPathContext.Provider value={{isAdminPath, setIsAdminPath}}>
                 <UserPathContext.Provider value={{isUserPath, setIsUserPath}}>
-                    <Header />
+                    <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
 
                     <Routes>
-                      <Route path="/auth" element={<Auth />} />
-                      <Route path="/admin/signup" element={<Admin />} />
-                      <Route path="/admin/home" element={<AdminHome />} />
+                      <Route path="/auth" element={<Auth isLogin={isLogin} setIsLogin={setIsLogin}/>} />
                       <Route path="/" element={<Home />} />
                       <Route path="/adopt" element={<Adopt />} />
                       <Route path="/adopt/all" element={<AdoptAll />} />
@@ -126,7 +127,12 @@ const App = () => {
                       <Route path="/apply" element={<Apply />} />
                       <Route path="/apply/success" element={<ApplySuccess />} />
                       <Route path="/applications/:applicationId" element={<ApplicationDetails />} />
+
+                      <Route path="/admin/signup" element={<Admin />} />
+                      <Route path="/admin/home" element={<AdminHome />} />
                       <Route path="/admin/microchips" element={<Microchip />} />
+                      <Route path="/admin/pets" element={<AdminPet />} />
+                      
                     </Routes>
 
                     <Footer />

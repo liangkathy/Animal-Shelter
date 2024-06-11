@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const UserPathContext = createContext({userPath: true})
+export const UserPathContext = createContext({isUserPath: true})

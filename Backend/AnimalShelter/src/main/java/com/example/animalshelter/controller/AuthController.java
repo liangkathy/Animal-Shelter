@@ -55,10 +55,23 @@ public class AuthController {
         CommonResponse response = CommonResponse.builder()
                 .hasError(false)
                 .data(user)
-                .message("User created succesfully")
+                .message("User created successfully")
                 .status(HttpStatus.CREATED)
                 .build();
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/authorization")
+    public ResponseEntity<?> verifyAdmin(@RequestHeader (name="Authorization") String token) {
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(true)
+                .message("Confirmed admin user")
+                .status(HttpStatus.OK)
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
     //using record type to save time on boilerplate code

@@ -2,9 +2,11 @@ import Button from '../../Button/Button'
 import Input from '../../Input/Input'
 import { Link } from 'react-router-dom'
 import './Login.css'
-import { AppleLoginButton, FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import { useContext } from 'react'
 import { ThemeContext } from '../../../contexts/ThemeContext'
+import GoogleLogin from "../../../assets/Google.png";
+import FacebookLogin from "../../../assets/Facebook.png";
+import AppleLogin from "../../../assets/Apple.png";
 
 const Login = ({setLoginFormData, handleLogin, toggleAuthMode, errorMessage}) => {
     const {theme} = useContext(ThemeContext)
@@ -55,9 +57,9 @@ const Login = ({setLoginFormData, handleLogin, toggleAuthMode, errorMessage}) =>
                     </div>
 
                     <div className="other-logins">
-                        <GoogleLoginButton size="25px" iconSize="1em" align='center'/>
-                        <FacebookLoginButton size="25px" iconSize="1em" align='center'/>
-                        <AppleLoginButton size="25px" iconSize="1em" align='center'/>
+                        <img src={GoogleLogin} className='other-button'/>
+                        <img src={FacebookLogin} className='other-button'/>
+                        <img src={AppleLogin} className='other-button'/>
                     </div>
 
                 </div>

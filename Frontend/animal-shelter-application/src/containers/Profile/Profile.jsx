@@ -40,6 +40,9 @@ const Profile = () => {
             console.log(response)
             if (response.hasError) {
                 console.log("message", response.message);
+                if (response.status == 401) {
+                    navigate("/accessdenied")
+                }
             }
             setUserProfileInfo(response.data)
         }
@@ -141,11 +144,11 @@ const Profile = () => {
     return (
         <section className={`profile ${theme}`}>
             <h4>Profile</h4>
-            <div className='profile-container'>
-                <div className='ps1 profile-section'>
+            <div  className='profile-container'>
+                <div id={`edit-${isEdit}`} className='ps1 profile-section'>
                     <div className="profile-icon-large">
                         {
-                            username[0].toUpperCase()
+                            username && username[0].toUpperCase()
                         }
                     </div>
                     <Link to="/favorites">Favorite Pets</Link>

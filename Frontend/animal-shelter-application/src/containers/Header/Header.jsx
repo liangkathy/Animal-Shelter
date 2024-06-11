@@ -3,7 +3,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Button from '../../components/Button/Button'
 import Toggle from '../../components/Toggle/Toggle'
 import { Link, useNavigate } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import './Header.css'
 import { AuthContext } from '../../contexts/AuthContext'
 import AuthHeader from '../../components/Auth/AuthHeader/AuthHeader'
@@ -15,7 +15,7 @@ import { AdminPathContext } from '../../contexts/AdminPathContext'
 import { UserPathContext } from '../../contexts/UserPathContext'
 
 
-const Header = () => {
+const Header = ({setIsLogin}) => {
     const navigate = useNavigate()
     const {theme} = useContext(ThemeContext)
     const {currentUsername, setCurrentUsername} = useContext(AuthContext);
@@ -28,9 +28,7 @@ const Header = () => {
     useEffect(() => {
         if(usernameFromSessionStorage) {
             setCurrentUsername(usernameFromSessionStorage)
-        } else {
-            navigate("/auth")
-        }
+        } 
     },[])
 
 
@@ -50,22 +48,62 @@ const Header = () => {
     }
 
     const closeNavByLink = () => {
-        setIsNavOpen(!isNavOpen)
-        setIsHamburgerOpen(!isHamburgerOpen)
+        setIsNavOpen(false)
+        setIsHamburgerOpen(false)
     }
+
+    const setSignUp = () => {
+        setIsLogin(false)
+        closeNavByLink()
+    }
+
+    const setLogIn = () => {
+        setIsLogin(true)
+        navigate('/auth')
+        closeNavByLink()
+    }
+
+    //ensure hamburger menu and nav close when screen size is over 768px
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+    useLayoutEffect(() => {
+        const updateSize = () => {
+            setWindowSize(window.innerWidth)
+        }
+
+        window.addEventListener('resize', updateSize)
+        updateSize()
+        
+        //clean up and remove event listener
+        return () => removeEventListener('resize', updateSize)
+    },[])
+
+    useEffect(() => {
+        if (windowSize >= 768) {
+            setIsNavOpen(false)
+            setIsHamburgerOpen(false)
+        }
+    },[windowSize])
 
     return (
         <>
-            <AuthHeader theme={theme}/>
             <AdminHeader />
 
-            <header className={`header header-${theme} ${currentUsername && !isAdminPath ? undefined : "hidden"}`}>
+            <header className={`header ${theme} ${!isAdminPath ? undefined : "hidden"}`}>
+                <Link to="/" id={`logo-${theme}`} className="logo-container">
+                    <img className="logoimg" src={theme === "dark" ? darklogo : logo} alt='animal-logo'/>
+                    <div className={`logo-text logo-${theme} logo-${theme}`}>Critters Animal Rescue</div>
+                </Link>
+                
                 {
-                    currentUsername && 
-                    
+                    currentUsername ? 
                     <>
-                        <div className={`logo logo-${theme}`} id={`logo-${theme}`}><Link to="/">Critters Animal Rescue</Link></div>
-                        <NavBar isNavOpen={isNavOpen} closeNavByLink={closeNavByLink}/>
+                        <div className={`logo `} ></div>
+                        
+                        <NavBar 
+                            isNavOpen={isNavOpen} 
+                            closeNavByLink={closeNavByLink}
+                            currentUsername={currentUsername}/>
 
                         <Link to="/profile" id="profile-icon">
                             <div className="profile-icon">
@@ -75,9 +113,21 @@ const Header = () => {
                             </div>
                             
                         </Link>
+
+                        <Link to="/" ><Button text={"Logout"} handleClick={clearAuthData} style={"logout"}/></Link>
                         
-                        <Link to="/auth"><Button text={"Logout"} handleClick={clearAuthData}/></Link>
+                    </> : 
+                    <>
+
+                        <NavBar 
+                            isNavOpen={isNavOpen} 
+                            closeNavByLink={closeNavByLink} 
+                            setLogIn={setLogIn} 
+                            setSignUp={setSignUp}/>
                         
+                    </>        
+                }
+                               
                         <div className="toggle-container">
                             <Toggle className={'theme'} />
                             <label>Dark Mode</label>
@@ -88,9 +138,9 @@ const Header = () => {
                             <div className={`bar bar-${theme}`}></div>
                             <div className={`bar bar-${theme}`}></div>
                         </div>
-                    </>
+                    
 
-                }
+                
                 
             </header>
         

@@ -10,27 +10,27 @@ import { AdminPathContext } from "../../contexts/AdminPathContext.js";
 import { UserPathContext } from "../../contexts/UserPathContext.js";
 
 
-const Auth = () => {
+const Auth = ({isLogin, setIsLogin}) => {
     const {theme} = useContext(ThemeContext)
-    const {setIsAdminPath} = useContext(AdminPathContext)
+    const {isAdminPath, setIsAdminPath} = useContext(AdminPathContext)
     const {setIsUserPath} = useContext(UserPathContext)
     const navigate = useNavigate()
     const {currentUsername, setCurrentUsername} = useContext(AuthContext);
     const usernameFromSessionStorage = sessionStorage.getItem("username")
 
-    useEffect(() => {
-        if(usernameFromSessionStorage) {
-            setCurrentUsername(usernameFromSessionStorage)
-            navigate("/")
-        } 
-    },[])
+    // useEffect(() => {
+    //     if(usernameFromSessionStorage) {
+    //         setCurrentUsername(usernameFromSessionStorage)
+    //         navigate("/")
+    //     } 
+    // },[])
 
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
     })
 
-    const [isLogin, setIsLogin] = useState(true);
+
     const [signupFormData, setSignUpFormData] = useState({
         firstName: "",
         lastName: "",

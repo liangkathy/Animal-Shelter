@@ -1,0 +1,90 @@
+.modify-pet-section {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.modify-pet-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.modal-container {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 950;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pet-modal {
+    position: relative;
+    width: 50%;
+    height: 70%;
+    min-width: 400px;
+    max-height: 600px;
+    min-height: 500px;
+    z-index: 951;
+    padding: 8%;
+    border-radius: 10px;
+}
+
+.pet-modal h3 {
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.modal-light {
+    background-color: rgb(237, 237, 237);
+    box-shadow: 0 0 3px 2px rgb(215, 215, 215);
+}
+
+.modal-dark {
+    background-color: rgb(76, 76, 76);
+    box-shadow: 0 0 3px 2px rgb(51, 51, 51);
+}
+
+.modal-pet-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-pet-details div{
+    font-size: 1.2em;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.img-div {
+    position: relative;
+    width: fit-content;
+}
+
+.img-edit {
+    position: absolute;
+    top: 1%;
+}
+
+.weight-div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.pencil {
+    cursor: pointer;
+}

@@ -7,6 +7,7 @@ import { getData } from '../../api/api'
 import Button from '../../components/Button/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import ForbiddenError from '../Error/ForbiddenError'
+import { UserPathContext } from '../../contexts/UserPathContext'
 
 const Microchip = () => {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ const Microchip = () => {
     const [allMicrochips, setAllMicrochips] = useState([])
     const [searchInput, setSearchInput] = useState()
     const [filterBy, setFilterBy] = useState("All")
-    const userPathFromSession = sessionStorage.getItem('userPath')
+
 
     useEffect(() => {
 
@@ -58,12 +59,8 @@ const Microchip = () => {
 
     //creates new array where filtered items also meet search input
     const combinedSearchAndFilteredData = searchInput ? filteredData.filter(chip => chip.id.toString().includes(searchInput)) : filteredData
-    
-    
-    
 
     return (
-        // !userPathFromSession ? <ForbiddenError /> :
         <section className={`microchip-database ${theme}`}>
             <h4>Microchip Database</h4>
             <div className='matching-container'>

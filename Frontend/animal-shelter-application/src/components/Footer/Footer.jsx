@@ -3,14 +3,25 @@ import './Footer.css'
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Toggle from '../Toggle/Toggle';
 import { UserPathContext } from '../../contexts/UserPathContext';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
     const {theme} = useContext(ThemeContext)
-    const userPath = sessionStorage.getItem('userPath')
+    const userPath = sessionStorage.getItem("userPath")
+    // const {isUserPath, setIsUserPath} = useContext(UserPathContext)
+    const location = useLocation()
+
+    // useEffect(() => {
+    //     if (isUserPath) {
+    //         setIsUserPath(sessionStorage.getItem("userPath"))
+    //     }
+    // },[isUserPath])
+
+    const fixFooter = location.pathname === '/auth';
 
     const address = [
         "1000 Address Lane",
@@ -36,7 +47,7 @@ const Footer = () => {
         }
     ]
     return (
-        <footer className={`footer-${theme}`}>
+        <footer className={`footer-${theme} ${fixFooter ? "footer-fixed" : undefined}`}>
             <div className="footer-left">
                 
                 <div>
@@ -51,7 +62,7 @@ const Footer = () => {
             </div>
             <div className="footer-center">
                 <div className='footer-name'>Site by: Kathy Liang</div>
-                <div className={`toggle-container ${userPath == 'true'|| userPath == null ? "hidden" : undefined}`}>
+                <div className={`toggle-container ${userPath == "true"|| userPath == null ? "hidden" : undefined}`}>
                     <Toggle className={'user-Toggle'} />
                     <label>Admin Mode</label>
                 </div>

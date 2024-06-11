@@ -47,9 +47,9 @@ public class SecurityConfig {
                 }))
                 .addFilterAfter(new JwtRequestFilter(userDetailsServiceImpl, jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/admin/**", "/microchips/**").hasRole("ADMIN")//any admin endpoint available to admin only
-                        .requestMatchers("/users/**", "/applications/** ", "/pets/**").hasRole("USER")
-                        .requestMatchers("/login", "/signup").permitAll()//no login needed to user these endpoints
+                        .requestMatchers("/admin/**", "/microchips/**", "/authorization").hasRole("ADMIN")//any admin endpoint available to admin only
+                        .requestMatchers("/users/**", "/applications/** ").hasRole("USER")
+                        .requestMatchers("/login", "/signup", "/pets").permitAll()//no login needed to user these endpoints
                         .anyRequest().authenticated())
                         .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler)) //handles unauthorized requests

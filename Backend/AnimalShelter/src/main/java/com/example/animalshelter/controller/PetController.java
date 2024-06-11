@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,6 +68,7 @@ public class PetController {
 
     //get pets by username (favorited)
     @GetMapping("/users/{username}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getPetsByUsername(@PathVariable String username) {
         List<Pet> pets = petService.getPetsByUsername(username);
 
@@ -82,6 +84,7 @@ public class PetController {
 
     //get pet by microchip id
     @GetMapping("/microchips/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getPetsByMicrochipId(@PathVariable Integer id) {
         Pet pet = petService.getPetByMicrochipId(id);
 
@@ -98,6 +101,7 @@ public class PetController {
     //---POST---
     //create new pet
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addPet(@Valid @RequestBody PetDTO petDTO) {
         Pet pet = petService.createPet(petDTO);
 
@@ -114,6 +118,7 @@ public class PetController {
     //---PUT or PATCH---
     //update pet by id
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updatePet(@PathVariable Integer id, @Valid @RequestBody PetDTO petDTO) {
         Pet pet = petService.updatePet(id, petDTO);
 
@@ -131,6 +136,7 @@ public class PetController {
     //---DELETE---
     //delete pet by id
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deletePet(@PathVariable Integer id) {
         petService.deletePet(id);
 

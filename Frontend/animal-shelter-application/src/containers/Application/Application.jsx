@@ -9,13 +9,12 @@ const Application = () => {
     const {theme} = useContext(ThemeContext)
     const {applications, setApplications} = useContext(ApplicationsContext)
 
-    
-
     return (
         <section className={`application-container ${theme}`}>
             <h4>Your Applications</h4>
             <div className="applications-list">
-                {
+                {   
+                    applications &&
                     applications.length === 0 ? (
                         <>
                             <h3>No applications submitted yet!</h3>

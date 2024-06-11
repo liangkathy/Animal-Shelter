@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ThemeContext } from "../../contexts/ThemeContext"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
@@ -12,7 +12,7 @@ const AdminHeader = () => {
     const navigate = useNavigate()
     const {theme} = useContext(ThemeContext)
     const {currentUsername, setCurrentUsername} =useContext(AuthContext)
-    const {isAdminPath} = useContext(AdminPathContext)
+    const {isAdminPath, setIsAdminPath} = useContext(AdminPathContext)
     const {setIsUserPath} = useContext(UserPathContext)
 
     //remove jwt on logout
@@ -22,12 +22,13 @@ const AdminHeader = () => {
         sessionStorage.removeItem('username');
         sessionStorage.removeItem('adminPath');
         sessionStorage.removeItem('userPath');
+        setIsAdminPath(false);
         setIsUserPath(true);
     }
 
     return (
 
-            <header className={`header header-${theme} ${currentUsername && isAdminPath ? undefined : "hidden"}`} id="admin-header">
+            <header className={`header header-${theme} ${theme} ${isAdminPath ? undefined : "hidden"}`} id="admin-header">
                 {
                     currentUsername && 
                     

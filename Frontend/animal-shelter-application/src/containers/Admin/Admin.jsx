@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react"
 import SignUp from "../../components/Auth/SignUp/SignUp"
-import { postDataRestricted } from "../../api/api.js";
+import { postDataRestricted, verifyAdmin } from "../../api/api.js";
 import { AuthContext } from "../../contexts/AuthContext.js";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../contexts/ThemeContext.js";
@@ -12,6 +12,18 @@ const Admin = () => {
     const [isSignedUp, setIsSignedUp] = useState(false)
     
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await verifyAdmin("authorization")
+            console.log(response);
+            if (response.hasError) {
+                console.log("message", response.message);
+                navigate("/accessdenied")
+            }
+        }
+        fetchData();
+    }, [])
 
     const [signupFormData, setSignUpFormData] = useState({
         firstName: "",
@@ -37,6 +49,10 @@ const Admin = () => {
 
         if (response.hasError) {
             setErrorMessage(response.message.valueOf())
+            if (response.hasError) {
+                console.log("message", response.message);
+                navigate("/accessdenied")
+            }
         } else {
             setErrorMessage([null])
             setIsSignedUp(true)

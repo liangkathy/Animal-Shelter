@@ -1,18 +1,56 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './NavBar.css'
 import { useContext } from 'react'
 import { ThemeContext } from '../../contexts/ThemeContext'
 
-const NavBar = ({isNavOpen, closeNavByLink}) => {
+import Button from '../Button/Button'
+
+const NavBar = ({isNavOpen, closeNavByLink, setLogIn, setSignUp, currentUsername}) => {
     const {theme} = useContext(ThemeContext)
+    const location = useLocation()
+
+    const hideButtons = location.pathname === '/auth';
     
     return (
-        <nav className={`navbar ${isNavOpen ? "nav-open" : ""} nav-${theme}`}>
+        <nav id={`${!setLogIn ? "navbar-logged-in" : undefined}`} className={`navbar ${isNavOpen && "nav-open"} nav-${theme}`}>
+                <ul id={`${!setLogIn ? "navlist" : undefined}`} className='nav-list'>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/" >Home</Link></li>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/adopt" >Adopt</Link></li>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/about" >About Us</Link></li>
+                </ul>
+                {
+                    !currentUsername &&
+                    <div className={`auth-options-top ${hideButtons || isNavOpen ? "hidden" : undefined}`}>
+                        <Button 
+                            text={'Log in'} 
+                            handleClick={setLogIn} />  
 
-                <li className='nav-link' onClick={closeNavByLink}><Link to="/" >Home</Link></li>
-                <li className='nav-link' onClick={closeNavByLink}><Link to="/adopt" >Adopt</Link></li>
-                <li className='nav-link' onClick={closeNavByLink}><Link to="/about" >About Us</Link></li>        
+                        <Link 
+                            to="/auth" 
+                            onClick={setSignUp}
+                            id={`auth-options-${theme}`}>Sign up</Link>
+                     </div>  
+                }
+                
+                
+                    { 
+                        setLogIn && isNavOpen && 
+                        <div id="auth-options">
+                            <Link 
+                                to="/auth" 
+                                onClick={setLogIn} 
+                                id={`auth-options-${theme}`}
+                                className={hideButtons ? "hidden" : undefined} >Log in</Link> 
+                            <Link 
+                                to="/auth" 
+                                onClick={setSignUp}
+                                id={`auth-options-${theme}`}
+                                className={hideButtons ? "hidden" : undefined} >Sign up</Link>
+                        </div> 
+                    }
+                
+                
          </nav>
     )
 }

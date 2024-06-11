@@ -2,6 +2,19 @@
 const backendBaseURL = "http://localhost:8080"
 
 //get requests
+export const getDataPublic = async (endpoint) => {
+    console.log("Get request calling " + endpoint);
+
+    try {
+        const response = await fetch(`${backendBaseURL}/${endpoint}`); 
+        const data = response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data: response may be null", error);
+        throw error;
+    }
+}
+
 export const getData = async (endpoint) => {
     console.log("Get request calling " + endpoint);
     const headers = {'Authorization': 'Bearer ' + localStorage.getItem("token")};
@@ -108,6 +121,20 @@ export const deleteData = async (endpoint) => {
         return data;
     } catch (error) {
         console.error("Error deleting data: ", error);
+        throw error;
+    }
+}
+
+export const verifyAdmin = async (endpoint) => {
+    console.log("Get request calling " + endpoint);
+    const headers = {'Authorization': 'Bearer ' + localStorage.getItem("token")};
+
+    try {
+        const response = await fetch(`${backendBaseURL}/${endpoint}`, {headers}); 
+        const data = response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data: response may be null", error);
         throw error;
     }
 }

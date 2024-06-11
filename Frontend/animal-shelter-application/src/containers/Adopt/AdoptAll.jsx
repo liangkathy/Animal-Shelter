@@ -1,7 +1,7 @@
 import Pet from "../Pet/Pet.jsx"
 import { useContext, useEffect, useState } from "react"
 import "./Adopt.css"
-import { getData } from "../../api/api"
+import { getDataPublic } from "../../api/api"
 import { calculateAge } from '../../utils/utils.js'
 import { Link } from "react-router-dom"
 import { ThemeContext } from "../../contexts/ThemeContext.js"

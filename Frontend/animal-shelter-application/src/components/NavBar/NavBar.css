@@ -5,7 +5,6 @@
     width: 100%;
     padding: 10px 0px 10px;
     flex-direction: column;
-    row-gap: 20px;
     align-items: center;
     transform: translateX(-100%);
 }
@@ -16,8 +15,9 @@
 }
 .nav-open {
     transform: translateX(0) !important;
-    text-align: right;
+    text-align: center;
     padding-right: 40px;
+    height: 100%;
 }
 
 .nav-item {
@@ -58,7 +58,7 @@ a:link {
 
 a:hover {
     text-decoration: underline;
-    color: rgb(128, 155, 206, 1);
+    color: rgb(128, 155, 206);
 }
 
 a:visited {
@@ -66,12 +66,35 @@ a:visited {
 }
 
 .nav-dark {
-    background-color: rgba(88, 88, 88, 0.8);
+    background-color: rgba(54, 54, 54, 0.95);
     color: white;
 }
 
 .nav-light {
-    background-color: rgb(236, 236, 236, 0.8);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+#auth-options {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    font-size: 1.2em;
+}
+
+#auth-options-dark {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#auth-options-dark:hover {
+    color: white;
+}
+
+#auth-options-light {
+    color: rgba(53, 72, 111, 0.75);
+}
+
+#auth-options-light:hover {
+    color: rgb(53, 72, 111);
 }
   
 
@@ -89,7 +112,37 @@ a:visited {
         transform: translateX(0) !important;
         top: 0;
         padding: 10px;
-        max-width: 320px;
-        justify-content: space-between;
+        max-width: 100%;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    #navbar-logged-in {
+        width: 600px;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        width: 62%;
+        padding: 0;
+        font-size: 1.1em;
+    }
+
+    #navlist {
+        width: 100%;
+        justify-content: space-around;
+        gap: 0px;
+    }
+
+    .auth-options-top {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 38%;
     }
 }

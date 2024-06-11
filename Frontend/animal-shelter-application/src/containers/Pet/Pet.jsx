@@ -7,11 +7,26 @@ import Heart from '../../components/Heart/Heart';
 import './Pet.css'
 import { FavoritesContext } from '../../contexts/FavoritesContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import AuthModal from '../../components/Modal/AuthModal';
 
 const Pet = ({id, name, sex, age, breed, imgURL, addId}) => {
     const username = sessionStorage.getItem("username");
     const {theme} = useContext(ThemeContext)
     const {favoritedPetIds, setFavoritedPetIds} = useContext(FavoritesContext)
+    // const [isClicked, setIsClicked] = useState(false)
+    // const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    // useEffect(()=> {
+    //     const checkLoggedIn = () => {
+            
+    //         if (sessionStorage.username != null) {
+    //             setIsLoggedIn(true)
+    //         } else {
+    //             setIsLoggedIn(false)
+    //         }
+    //     }
+    //     checkLoggedIn()
+    // },[])
     
     useEffect(() => {
         const username = sessionStorage.getItem("username");
@@ -82,7 +97,8 @@ const Pet = ({id, name, sex, age, breed, imgURL, addId}) => {
                     petId={id} 
                     handleFavoriteAdd={handleFavoriteAdd}
                     handleFavoriteDelete={handleFavoriteDelete} 
-                    favoritedPetIds={favoritedPetIds}/>
+                    favoritedPetIds={favoritedPetIds}
+                    />
         </div>
     )
 }

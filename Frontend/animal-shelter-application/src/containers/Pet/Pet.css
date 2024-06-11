@@ -10,11 +10,11 @@
     border-radius: 8px;
 }
 
-.pet-snapshot-dark {
-    box-shadow: 0px 0 4px 1px white;
-}
+/* .pet-snapshot-dark {
+    box-shadow: 0px 0 2px 1px white;
+} */
 
-.pet-snapshot h3 {
+.pet-snapshot, .modify-pet-section h3 {
     font-size: 1.2em;
     font-weight: bold;
     margin: 0 auto;

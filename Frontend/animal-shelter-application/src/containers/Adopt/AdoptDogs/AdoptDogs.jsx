@@ -2,7 +2,7 @@ import Pet from '../../Pet/Pet.jsx'
 import { calculateAge } from '../../../utils/utils.js'
 import { useContext, useEffect, useState } from "react"
 import "../Adopt.jsx"
-import { getData } from "../../../api/api.js"
+import { getDataPublic } from "../../../api/api.js"
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../../contexts/ThemeContext.js'
 import FavoritesHeart from "../../../components/FavoritesHeart/FavoritesHeart.jsx"
@@ -13,7 +13,7 @@ const AdoptDogs = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getData("pets?type=dog")
+            const response = await getDataPublic("pets?type=dog")
             if (response.hasError) {
                 console.log("message", response.message);
             }
