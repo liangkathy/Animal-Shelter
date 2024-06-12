@@ -8,11 +8,11 @@ import { IoIosLogIn } from 'react-icons/io';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedPetIds}) => {
-    const {username} = useContext(AuthContext)
+    const {currentUsername} = useContext(AuthContext)
     const isFavorited = favoritedPetIds.some(id => id === petId)
 
     const onHeartToggle = (e) => {
-        if (!username) {
+        if (!currentUsername) {
             console.log("User not logged in");
         } else {
             //handling based whether pet is part of the favorited list
@@ -39,7 +39,7 @@ const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedP
                     <FaHeart id={petId} 
                         className="heart-solid" 
                         size={size} 
-                        onClick={checkLoggedIn && onHeartToggle}/> 
+                        onClick={onHeartToggle}/> 
             }   
         </div>
     )

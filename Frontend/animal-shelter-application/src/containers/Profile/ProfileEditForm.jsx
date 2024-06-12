@@ -32,21 +32,17 @@ const ProfileEditForm = ({userProfileInfo, setUserProfileInfo, onEditToggle, han
         } else { //non-nested values
 
             setFormData((prevFormData) => {
-                console.log("Previous form data here: ", prevFormData);
                 return {...prevFormData, [name]: value}
             })
         }
     }
 
     useEffect(() => {
-        console.log("Call for useEffect", formData);
     }, [formData])
 
 
     const onSaveChangesClick = (e) => {
         e.preventDefault();
-
-        console.log("Updated profile" , formData);
 
         handleProfileChange(formData)
     }

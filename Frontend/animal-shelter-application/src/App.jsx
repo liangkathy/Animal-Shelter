@@ -37,6 +37,7 @@ import { components } from 'react-select'
 import AdminSignUp from './containers/Admin/AdminSignUp/AdminSignUp.jsx'
 import AdminPet from './containers/AdminPet/AdminPet.jsx'
 
+
 const App = () => {
   const navigate = useNavigate()
   const[theme, setTheme] = useState("light")
@@ -105,6 +106,7 @@ const App = () => {
             <ApplicationsContext.Provider value={{applications, setApplications}}>
               <AdminPathContext.Provider value={{isAdminPath, setIsAdminPath}}>
                 <UserPathContext.Provider value={{isUserPath, setIsUserPath}}>
+  
                     <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
 
                     <Routes>
@@ -136,6 +138,7 @@ const App = () => {
                     </Routes>
 
                     <Footer />
+           
                 </UserPathContext.Provider>
               </AdminPathContext.Provider>
             </ApplicationsContext.Provider>

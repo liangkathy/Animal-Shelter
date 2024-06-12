@@ -4,17 +4,20 @@ import { ThemeContext } from '../../contexts/ThemeContext'
 import { PetsContext } from '../../contexts/PetsContext'
 import ModifyPetCard from './ModifyPetCard/ModifyPetCard'
 import { calculateAge } from '../../utils/utils'
-import { deleteData } from '../../api/api'
-import { render } from 'react-dom'
-import { AiFillFilePpt } from 'react-icons/ai'
+import { deleteData, getData, putDataBody } from '../../api/api'
+import { FaPlus } from "react-icons/fa6";
 import ModifyPetModal from './ModifyPetModal'
+import { Link } from 'react-router-dom'
+import AddPetModal from './AddPetModal'
 
 const AdminPet = () => {
     const {theme} = useContext(ThemeContext)
     const {allPets, setAllPets} = useContext(PetsContext)
     const [modalClose, setModalClose] = useState(true)
     const [petId, setPetId] = useState()
-    
+    const [isAddPet, setIsAddPet] = useState(false)
+    const [availableMicrochipsIds, setAvailableMicrochipsIds] = useState([null])
+    const [availableMicrochips, setAvailableMicrochips] = useState([])
 
     const handleDelete = async (id) => {
         console.log("Deleting pet..." + id);
@@ -29,20 +32,53 @@ const AdminPet = () => {
 
     //fetch pets when component mounts (ensures re-render with updated pets)
     useEffect(() => {
-    }, [allPets])
+    }, [allPets, petId, availableMicrochips, availableMicrochipsIds])
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const response = await getData("microchips?available=true")
+            console.log(response);
+            if (response.hasError) {
+                console.log("message", response.message);
+                navigate("/accessdenied")
+            }
+            setAvailableMicrochipsIds(response.data.map(chip => chip.id))
+            setAvailableMicrochips(response.data)
+        }
+        fetchData();
+    
+    }, [])
    
     const openEditModal = (id) => {
         setModalClose(false)
         setPetId(id)
     }
 
+    const closeEditModal = () => {
+        setModalClose(true)
+       
+    }
+
+    const openAddModal = () => {
+        setIsAddPet(true)
+    }
+
+    const closeAddModal = () => {
+        setIsAddPet(false)
+    }
+
     return (
         <section className={`modify-pet-section ${theme}`}>
             <h4>Modify Pet Information</h4>
+            <Link id="plus" className='add-container' onClick={openAddModal}>
+                <FaPlus className='add-button' size="1em"/>
+                Add Pet
+            </Link>
 
             <div className="pet-card-container">
                 {
-                    allPets.length === 0 ? <h3>No pets here, check back again later!</h3> :
+                    allPets.length === 0 ? <h3>No pets found!</h3> :
                     
                     
                     allPets.map((pet, i) => {
@@ -61,8 +97,23 @@ const AdminPet = () => {
             </div>
              
             {
-                !modalClose && <ModifyPetModal setModalClose={setModalClose} petId={petId}/>
+                !modalClose && <ModifyPetModal 
+                    petId={petId} 
+                    closeModal={closeEditModal}
+                    availableMicrochips={availableMicrochips}
+                    availableMicrochipsIds={availableMicrochipsIds}
+                    />
             }
+
+            {
+                isAddPet && <AddPetModal 
+                    closeAddModal={closeAddModal}
+                    availableMicrochips={availableMicrochips}
+                    setAvailableMicrochips={setAvailableMicrochips}
+                    availableMicrochipsIds={availableMicrochipsIds}
+                    setAvailableMicrochipsIds={setAvailableMicrochipsIds} />
+            }
+
             
         </section>
     )

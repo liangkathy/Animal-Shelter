@@ -79,7 +79,6 @@ const Profile = () => {
 
         if (response.hasError) {
             setErrorMessage(response.message.valueOf())
-            console.log(userProfileInfo);
         } else {
             sessionStorage.setItem('username', response.data.username.valueOf())
             setCurrentUsername(sessionStorage.getItem('username'))
