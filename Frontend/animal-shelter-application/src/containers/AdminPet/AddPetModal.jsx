@@ -56,6 +56,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
             setErrorMessage(response.message)
         } else {
             handleClose(response.data)
+            setErrorMessage([null])
         }
     }
 
