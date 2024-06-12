@@ -31,7 +31,7 @@ public class PetDTO {
     private String breed;
 
     @JsonFormat(pattern = "yyyy-MM-dd") //to deserialize value of LocalDate from string
-    @NotNull(message = "Date of birth cannot be null")
+    @NotNull(message = "Date of birth is required")
     @Past(message = "Date of birth cannot be a future date")
     private LocalDate dob;
 
@@ -39,7 +39,7 @@ public class PetDTO {
     //@Pattern(regexp = "(?:[Mm][Aa][Ll][Ee]|[Ff][Ee][Mm][Aa][Ll][Ee])$", message = "Sex field must be male or female")
     private String sex;
 
-    @NotNull(message = "Weight cannot be null")
+    @NotNull(message = "Weight is required")
     private Integer weight;
 
     private String imgURL; //not required, will default to blank image if not provided

@@ -35,6 +35,8 @@ public class PetService {
         if (microchipId != null) {
             Microchip existingMicrochip = microchipRepository.findById(microchipId).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Microchip with id " + microchipId + " not found"));
             pet.setMicrochip(existingMicrochip);
+            existingMicrochip.setPet(pet);
+            existingMicrochip.setAvailable(false);
         }
 
         pet.setName(capitalizeFully(petDTO.getName()));
@@ -110,6 +112,9 @@ public class PetService {
                 throw new IllegalArgumentException("This pet is already registered with microchip id " + existingPet.getMicrochip().getId());
             } else if (existingPet.getMicrochip() == null) {
                 existingPet.setMicrochip(existingMicrochip);
+                existingMicrochip.setPet(existingPet);
+                existingMicrochip.setAvailable(false);
+                microchipRepository.save(existingMicrochip);
             }
         }
         //only microchip can be added, weight and imgURL can be updated (name, type, breed, dob, sex should be constants)
