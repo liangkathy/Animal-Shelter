@@ -101,7 +101,9 @@ const AdminPet = () => {
                     petId={petId} 
                     closeModal={closeEditModal}
                     availableMicrochips={availableMicrochips}
+                    setAvailableMicrochips={setAvailableMicrochips}
                     availableMicrochipsIds={availableMicrochipsIds}
+                    setAvailableMicrochipsIds={setAvailableMicrochipsIds}
                     />
             }
 
@@ -111,7 +113,8 @@ const AdminPet = () => {
                     availableMicrochips={availableMicrochips}
                     setAvailableMicrochips={setAvailableMicrochips}
                     availableMicrochipsIds={availableMicrochipsIds}
-                    setAvailableMicrochipsIds={setAvailableMicrochipsIds} />
+                    setAvailableMicrochipsIds={setAvailableMicrochipsIds} 
+                    />
             }
 
             

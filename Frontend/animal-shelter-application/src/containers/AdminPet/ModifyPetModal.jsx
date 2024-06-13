@@ -9,7 +9,7 @@ import { getData, putDataBody } from '../../api/api';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 
-const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMicrochips}) => {
+const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMicrochips, setAvailableMicrochips, setAvailableMicrochipsIds}) => {
     const {theme} = useContext(ThemeContext)
     const {allPets, setAllPets} = useContext(PetsContext)
     const [pet, setPet] = useState(allPets.find(p => p.id === parseInt(petId)))
@@ -97,6 +97,13 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
             const updatedPets = [...removedPet, pet]
 
             setAllPets(updatedPets)
+        }
+
+        if (petEditForm.microchipId != null) {
+            const updatedIds = availableMicrochipsIds.filter(id => id != parseInt(petEditForm.microchipId))
+            setAvailableMicrochipsIds(updatedIds)
+            const updatedChips = availableMicrochips.filter(chip => chip.id != parseInt(petEditForm.microchipId))
+            setAvailableMicrochips(updatedChips)
         }
         
         closeModal()   
