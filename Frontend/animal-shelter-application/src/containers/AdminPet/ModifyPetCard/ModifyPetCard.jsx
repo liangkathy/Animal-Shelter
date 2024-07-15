@@ -4,7 +4,7 @@ import Button from '../../../components/Button/Button'
 import { ThemeContext } from '../../../contexts/ThemeContext'
 
 
-const ModifyPetCard = ({id, name, sex, age, breed, imgURL, addId, handleDelete, openEditModal}) => {
+const ModifyPetCard = ({id, name, sex, age, breed, imgURL, chip, addId, handleDelete, openEditModal}) => {
 
     return (
         <div className="modify-pet-container pet-snapshot" id={id}>
@@ -18,7 +18,8 @@ const ModifyPetCard = ({id, name, sex, age, breed, imgURL, addId, handleDelete, 
             <div>{age}</div>
             <div>{sex}</div>
             <div>{breed}</div>
-
+            <div>{chip}</div>
+            
             <div className='modify-pet-buttons'>
                 <Button text={"Edit"} handleClick={() => openEditModal(id)}/>
                 <Button text={"Delete"} 

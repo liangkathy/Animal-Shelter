@@ -54,7 +54,7 @@
 }
 
 .pet-modal h3, #add-modal h3 {
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 500;
     margin-bottom: 20px;
 }
@@ -119,6 +119,14 @@
     width: fit-content;
 }
 
+#no-pets {
+    font-weight: 400;
+}
+
+.add-prompt {
+    padding-top: 20px;
+}
+
 #plus:hover {
     text-decoration: none;
 }
@@ -153,28 +161,46 @@
 .add-pet-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
     width: 65%;
     margin-left: calc(0.5(width));
 }
 
-.add-pet-form input {
-    width: 100%;
+.input-1 input {
+    width: 80%;
 }
 
-.add-pet-form select {
-    width: 60%;
+/* .input-1 label {
+    width: 20%;
+} */
+
+.input-1 select {
+    width: 62%;
+}
+
+.input-2 select {
+    width: 80%
+}
+
+/* .input-2 label {
+    width: 25%
+} */
+
+.input-3 input {
+    width: 95%;
 }
 
 #date-input {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: flex-start;
+    gap: 10px;
 }
 
 .date-format-ex {
-    font-size: 11px;
+    font-size: 10px;
     display: flex;
     align-items: center;
     opacity: 0.8;
@@ -184,20 +210,21 @@
 
 .type-sex-container {
     display: flex;
+    width: 100%;
 }
 
 .pet-input {
     display: flex;
-    gap: 5px;
+    gap: 10px;
     width: 100%;
     justify-content: space-between;
 }
 
 .pet-type-input, .pet-sex-input {
     display: flex;
-    gap: 5px;
     width: 100%;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .pet-sex-input {
@@ -213,4 +240,11 @@
     gap: 20px;
     justify-content: center;
     padding-bottom: 40px;
+}
+
+#file{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }

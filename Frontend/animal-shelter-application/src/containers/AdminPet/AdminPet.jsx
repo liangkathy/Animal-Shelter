@@ -4,7 +4,7 @@ import { ThemeContext } from '../../contexts/ThemeContext'
 import { PetsContext } from '../../contexts/PetsContext'
 import ModifyPetCard from './ModifyPetCard/ModifyPetCard'
 import { calculateAge } from '../../utils/utils'
-import { deleteData, getData, putDataBody } from '../../api/api'
+import { deleteData, getData } from '../../api/api'
 import { FaPlus } from "react-icons/fa6";
 import ModifyPetModal from './ModifyPetModal'
 import { Link } from 'react-router-dom'
@@ -38,7 +38,6 @@ const AdminPet = () => {
 
         const fetchData = async () => {
             const response = await getData("microchips?available=true")
-            console.log(response);
             if (response.hasError) {
                 console.log("message", response.message);
                 navigate("/accessdenied")
@@ -78,9 +77,12 @@ const AdminPet = () => {
 
             <div className="pet-card-container">
                 {
-                    allPets.length === 0 ? <h3>No pets found!</h3> :
-                    
-                    
+                    allPets.length === 0 ? 
+                    <div>
+                        <h3 id='no-pets'>No pets were found!</h3>
+                        <div className='add-prompt'>Add to the database <Link onClick={openAddModal}>here</Link></div>
+                    </div>
+                    :
                     allPets.map((pet, i) => {
                         return <ModifyPetCard key={i} 
                                     id={pet.id}
@@ -89,6 +91,7 @@ const AdminPet = () => {
                                     age={calculateAge(pet.dob)} 
                                     breed={pet.breed} 
                                     imgURL={pet.imgURL}
+                                    chip={!pet.microchip ? 'No microchip' : `Microchip: ${pet.microchip.id}`}
                                     addId={pet.type} 
                                     handleDelete={handleDelete}
                                     openEditModal={openEditModal} />

@@ -150,9 +150,9 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
                                 onChange={handleChange} />
                         }
                     </div>
-                    <div className='chip-edit-div'>Microchip:  
+                    <div className='chip-edit-div'>Microchip:
                         {
-                            pet.microchip ? ( pet.microchip.id) : 
+                            pet.microchip ? (` ${pet.microchip.id}`) : 
                             !isEditMicrochip ? <> None<MdModeEdit className='chip-edit pencil' onClick={handleMicrochipEdit}/></> :
                             availableMicrochipsIds.length > 0 &&
                                 <select className='chip-dropdown' type="text" name="microchipId" onChange={handleChange}>
@@ -163,7 +163,7 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
                                         })
                                     }
                                 </select>
-                        }   
+                        }
                     </div>
                 </div>
                 <div className='edit-buttons'>

@@ -48,7 +48,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
 
     const handleSave = async () => {
         console.log(petAddForm);
-        const response = await postDataRestricted(`pets`, petAddForm)
+        const response = await postDataRestricted('pets', petAddForm)
         console.log(response);
 
         if (response.hasError) {
@@ -94,11 +94,11 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                     }
                 </div>
                 <form className="add-pet-form">
-                    <div className="pet-input">
+                    <div className="pet-input input-1">
                         <Input type={'text'} name={'name'} placeholder={'Name'} labelTextBefore={'Name'} onChange={handleChange} />
                     </div>
-                    <div className="type-sex-container pet-input">
-                        <div className='pet-type-input'>
+                    <div className="type-sex-container">
+                        <div className='pet-type-input input-2'>
                             <label htmlFor='type'>Type</label>
                             <select name="type"  placeholder="Type" onChange={handleChange}>
                                 <option value="null"></option>
@@ -108,7 +108,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                             </select>
                         </div>
 
-                        <div className='pet-sex-input'>
+                        <div className='pet-sex-input input-2'>
                             <label htmlFor='sex'>Sex</label>
                             <select name="sex"  placeholder="Sex" onChange={handleChange}>
                                 <option value="null"></option>
@@ -117,10 +117,10 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                             </select>
                         </div>
                     </div>
-                    <div className="pet-input">
+                    <div className="pet-input input-1">
                         <Input type={'text'}name={'breed'} placeholder={'Breed'} labelTextBefore={'Breed'} onChange={handleChange} />
                     </div>
-                    <div id="date-input" className="pet-input">
+                    <div id="date-input" >
                         <label>Date</label>
                         <DatePicker 
                             name='date'
@@ -132,7 +132,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                         
                     </div>
 
-                    <div className=" pet-input">
+                    <div className=" pet-input input-3">
                         <Input type={'number'}
                             name={'weight'} 
                             placeholder={'0'} 
@@ -142,7 +142,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                             style={"weight-input"}/>
                     </div>
 
-                    <div className=" pet-input">
+                    <div className=" pet-input input-1">
                         <label htmlFor='microchipId'>Microchip ID</label>
                         <select className='chip-dropdown' type="text" name="microchipId" onChange={handleChange}>
                             <option value="null">None</option>
@@ -155,7 +155,7 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                         </select>
                     </div>
 
-                    <div className="pet-input file">
+                    <div id="file" className="pet-input file">
                         <Input type={'file'}
                             name={'imgURL'} 
                             placeholder={'Image'} 
