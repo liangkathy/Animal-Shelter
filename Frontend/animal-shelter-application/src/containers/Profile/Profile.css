@@ -118,7 +118,7 @@
 
 @media screen and (min-width: 560px) {
     .profile-section {
-        margin-bottom: 100%;
+        margin-bottom: 50vh;
     }
 }
 
@@ -128,12 +128,12 @@
     }
 
     profile-form {
-        margin-bottom: 100%;
+        margin-bottom: 50vh;
     }
 }
 
 @media screen and (max-width: 560px ) {
     .ps2 {
-        margin-bottom: 100%;
+        margin-bottom: 50vh;
     }
 }

@@ -6,12 +6,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 25px;
-    padding-right: 35px;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    padding: 5px 8px 10px 8px;
     z-index: 999;
-    height: 85px;
+    height: 100px;
 }
 
 .footer-fixed {
@@ -29,13 +26,19 @@ footer {
     padding: 0;
 }
 
+.footer-left {
+    font-size: 0.8em;
+}
+
 .footer-right {
     display: flex;
     flex-direction: column;
     justify-content: right;
     align-items: center;
+}
 
-    height: 80px;
+.footer-center {
+    font-size: 0.8em;
 }
 
 .socials {
@@ -43,7 +46,7 @@ footer {
 }
 
 .logo-footer {
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 500;
 }
 
@@ -54,4 +57,20 @@ footer {
 
 .footer-light {
     background-color: rgb(236, 236, 236);
+}
+
+@media screen and (min-width: 550px) { 
+    footer{
+        height: 85px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .footer-left, .footer-center {
+        font-size: 1em;
+    }
+
+    .logo-footer {
+        font-size: 1.2em;
+    }
 }

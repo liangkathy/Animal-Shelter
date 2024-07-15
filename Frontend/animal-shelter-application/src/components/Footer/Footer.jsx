@@ -33,17 +33,17 @@ const Footer = () => {
         {
             name: "Instagram",
             link: "#",
-            logo: <AiOutlineInstagram size="2.8em"/>
+            logo: <AiOutlineInstagram size="2em"/>
         },
         {
             name: "Facebook",
             link: "#",
-            logo: <FaFacebookSquare size="2.3em"/>
+            logo: <FaFacebookSquare size="1.8em"/>
         },
         {
             name: "X",
             link: "#",
-            logo: <FaXTwitter size="2.3em"/>
+            logo: <FaXTwitter size="1.8em"/>
         }
     ]
     return (

@@ -9,14 +9,16 @@
 
 body {
   margin: 0;
+  padding: 0;
   height: 100%;
   width: 100vw;
 }
 
 section {
-  padding-bottom: 100vh;
+  padding-bottom: 50vh;
   padding-left: 40px;
   padding-right: 50px;
+  min-height: 100vh;
 }
 
 h4 {
