@@ -1,6 +1,6 @@
 import './Input.css'
 
-const Input = ({type, name, placeholder, propRef, labelTextBefore, labelTextAfter, onChange, value, id, required, style}) => {
+const Input = ({type, name, placeholder, propRef, labelTextBefore, labelTextAfter, onChange, value, id, required, style, val}) => {
     return (
         <>
             <label className={!labelTextBefore ? "hidden" : undefined} htmlFor={name}>{labelTextBefore}</label>
@@ -12,7 +12,8 @@ const Input = ({type, name, placeholder, propRef, labelTextBefore, labelTextAfte
                     defaultValue={value} 
                     id={id} 
                     required={required}
-                    className={style} />
+                    className={style}
+                    value={val} />
             <label className={!labelTextAfter ? "hidden" : undefined} htmlFor={name}>{labelTextAfter}</label>
         </>
     )

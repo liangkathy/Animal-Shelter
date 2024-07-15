@@ -1,8 +1,12 @@
 import './Button.css'
 
-const Button = ({handleClick, style, text, cssId}) => {
+const Button = ({handleClick, style, text, cssId, condition}) => {
     return (
-        <button onClick={handleClick} className={`button ${style}`} id={cssId}>{text}</button>
+        <button 
+            onClick={handleClick} 
+            className={`button ${style}`} 
+            id={cssId}
+            disabled={condition} >{text}</button>
     )
 }
 
