@@ -27,12 +27,14 @@ const PetDetails = ({setIsLogin}) => {
         window.history.back()
     }
 
-    const onApply = () => {
+    const onApply = (e) => {
         if (!currentUsername) {
-            console.log("User not logged in");
-            openLoginModal();
+            e.preventDefault()
+            console.log("User not logged in")
+            openLoginModal()
         } else {
-            navigate("/apply")
+            console.log("User logged in")
+            navigate('/apply')
         }
     }
 
@@ -63,7 +65,7 @@ const PetDetails = ({setIsLogin}) => {
                 <div>Sex: {pet.sex}</div>
                 <div>Weight: {`${pet.weight} pounds`}</div>
                 <div>Date of birth: {pet.dob}</div>
-                <Link onClick={onApply} className="apply-link">{`Apply for ${pet.name} here`}
+                <Link to="/apply" onClick={onApply} className="apply-link">{`Apply for ${pet.name} here`}
                     <IoIosArrowRoundForward size="2.1em"/>
                 </Link>
             </div>
