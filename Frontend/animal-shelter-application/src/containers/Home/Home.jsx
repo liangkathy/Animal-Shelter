@@ -4,52 +4,59 @@ import Slider from "react-slick";
 import './Home.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
+
+import cat from "../../assets/home/cat.png";
+import foster from "../../assets/home/foster.png";
+import kittens from "../../assets/home/kittens.png";
+import pets from "../../assets/home/pets.png";
+import adopt from "../../assets/home/adopt.png";
 
 
 const Home = () => {
     const {theme} = useContext(ThemeContext)
+    
     const newsItems = [
         {
-            src: "https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png",
+            src: foster,
             alt: "image icon",
             title: "Become a Foster",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             linkText: "Find out more",
-            linkPath: "/"
+            linkPath: "/unavailable"
         },
         {
-            src: "https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png",
+            src: adopt,
             alt: "image icon",
             title: "Pet Adoption Event",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             linkText: "RSVP",
-            linkPath: "/"
+            linkPath: "/unavailable"
         },
         {
-            src: "https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png",
-            alt: "image icon",
+            src: kittens,
+            alt: "kittens",
             title: "Kitten Season",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             linkText: "See available cats",
-            linkPath: "/"
+            linkPath: "/unavailable"
         },
         {
-            src: "https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png",
+            src: pets,
             alt: "image icon",
             title: "New Pet Friends",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             linkText: "Read more",
-            linkPath: "/"
+            linkPath: "/unavailable"
         },
         {
-            src: "https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png",
+            src: cat,
             alt: "image icon",
             title: "Preparing to Adopt",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             linkText: "Read more",
-            linkPath: "/"
+            linkPath: "/unavailable"
         }
     ]
 
@@ -98,10 +105,10 @@ const Home = () => {
             </Slider>            
             </div>
                 
-            <div className="featured-container home-section">
+            {/* <div className="featured-container home-section">
                 <h4>Featured Pets</h4>
                 
-            </div>
+            </div> */}
         </section>
 
     )
