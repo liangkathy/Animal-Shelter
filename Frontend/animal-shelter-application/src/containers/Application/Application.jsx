@@ -25,7 +25,9 @@ const Application = () => {
                                 return (
                                 <Link to={`/applications/${app.id}`}>
                                     <div key={i} className="app-label">
-                                        Application for {app.pets.map(pet => pet.name).join(' & ')}
+                                        
+                                        {app.pets.length == 0 ? "Application" : `Application for ${app.pets.map(pet => pet.name).join(' & ')}`}
+                                        
                                     </div>
                                     <div>Submitted at: {timestampFormatter(app.timestamp)}</div>
                                 
