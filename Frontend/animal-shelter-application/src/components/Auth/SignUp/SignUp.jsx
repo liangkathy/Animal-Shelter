@@ -103,7 +103,7 @@ const SignUp = ({signupFormData, setSignUpFormData, handleSignup, toggleAuthMode
                             </div>
 
                             <div>
-                                <p className="terms">By clicking on Sign up, you agree to TBD Name's <Link to="/terms">Terms and Conditions of Use</Link></p>
+                                <p className="terms">By clicking on Sign up, you agree to Critters Animal Rescue <Link to="/terms">Terms and Conditions of Use</Link></p>
                             </div>
 
                         </form>  

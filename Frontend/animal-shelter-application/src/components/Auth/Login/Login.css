@@ -19,7 +19,9 @@
     justify-content: space-evenly;
     align-items: center;
     border: 1px solid gray;
+    min-width: 490px;
     width: 65%;
+    max-width: 750px;
     height: 400px;
     border-radius: 8px;
 }
@@ -117,4 +119,8 @@
 
 .login-header {
     margin: 0;
+}
+
+@media screen and (min-width: 1150px) {
+
 }

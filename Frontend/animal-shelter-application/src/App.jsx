@@ -113,10 +113,10 @@ const App = () => {
                       <Route path="/auth" element={<Auth isLogin={isLogin} setIsLogin={setIsLogin}/>} />
                       <Route path="/" element={<Home />} />
                       <Route path="/adopt" element={<Adopt />} />
-                      <Route path="/adopt/all" element={<AdoptAll />} />
-                      <Route path="/adopt/dogs" element={<AdoptDogs />} />
-                      <Route path="/adopt/cats" element={<AdoptCats />} />
-                      <Route path="/adopt/other" element={<AdoptOther />} />
+                      <Route path="/adopt/all" element={<AdoptAll setIsLogin={setIsLogin}/>} />
+                      <Route path="/adopt/dogs" element={<AdoptDogs setIsLogin={setIsLogin}/>} />
+                      <Route path="/adopt/cats" element={<AdoptCats setIsLogin={setIsLogin}/>} />
+                      <Route path="/adopt/other" element={<AdoptOther setIsLogin={setIsLogin}/>} />
                       <Route path="/about" element={<About />} />
                       <Route path="/pets/:petId" element={<PetDetails />} />
                       <Route path="/profile" element={<Profile />} />
