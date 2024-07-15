@@ -9,7 +9,7 @@ import { PetsContext } from "../../contexts/PetsContext.js"
 import FavoritesHeart from "../../components/FavoritesHeart/FavoritesHeart.jsx"
 
 
-const AdoptAll = ({count}) => {
+const AdoptAll = ({setIsLogin}) => {
     const {theme} = useContext(ThemeContext)
     const {allPets, setAllPets} = useContext(PetsContext)
 
@@ -37,7 +37,8 @@ const AdoptAll = ({count}) => {
                                     age={calculateAge(pet.dob)} 
                                     breed={pet.breed} 
                                     imgURL={pet.imgURL}
-                                    addId={pet.type} />
+                                    addId={pet.type}
+                                    setIsLogin={setIsLogin} />
                         })
                 }
             </div>

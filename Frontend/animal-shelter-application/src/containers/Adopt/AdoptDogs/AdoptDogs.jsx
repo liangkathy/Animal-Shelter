@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../../contexts/ThemeContext.js'
 import FavoritesHeart from "../../../components/FavoritesHeart/FavoritesHeart.jsx"
 
-const AdoptDogs = () => {
+const AdoptDogs = ({setIsLogin}) => {
     const {theme} = useContext(ThemeContext)
     const [allDogs, setAllDogs] = useState([])
 
@@ -46,7 +46,8 @@ const AdoptDogs = () => {
                                     age={calculateAge(pet.dob)} 
                                     breed={pet.breed} 
                                     imgURL={pet.imgURL} 
-                                    addId={'dog'} />
+                                    addId={'dog'} 
+                                    setIsLogin={setIsLogin} />
                         })
                 }
             </div>

@@ -9,7 +9,7 @@ import { FavoritesContext } from '../../contexts/FavoritesContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import AuthModal from '../../components/Modal/AuthModal';
 
-const Pet = ({id, name, sex, age, breed, imgURL, addId}) => {
+const Pet = ({id, name, sex, age, breed, imgURL, addId, setIsLogin}) => {
     const username = sessionStorage.getItem("username");
     const {theme} = useContext(ThemeContext)
     const {favoritedPetIds, setFavoritedPetIds} = useContext(FavoritesContext)
@@ -98,6 +98,7 @@ const Pet = ({id, name, sex, age, breed, imgURL, addId}) => {
                     handleFavoriteAdd={handleFavoriteAdd}
                     handleFavoriteDelete={handleFavoriteDelete} 
                     favoritedPetIds={favoritedPetIds}
+                    setIsLogin={setIsLogin}
                     />
         </div>
     )

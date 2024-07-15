@@ -8,7 +8,7 @@ import { ThemeContext } from '../../../contexts/ThemeContext.js'
 import FavoritesHeart from "../../../components/FavoritesHeart/FavoritesHeart.jsx"
 
 
-const AdoptCats = () => {
+const AdoptCats = ({setIsLogin}) => {
     const {theme} = useContext(ThemeContext)
     const [allCats, setAllCats] = useState([])
 
@@ -47,7 +47,8 @@ const AdoptCats = () => {
                                     age={calculateAge(pet.dob)} 
                                     breed={pet.breed} 
                                     imgURL={pet.imgURL} 
-                                    addId={'cat'} />
+                                    addId={'cat'} 
+                                    setIsLogin={setIsLogin} />
                         })
                 }
             </div>

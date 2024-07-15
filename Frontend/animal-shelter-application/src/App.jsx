@@ -7,7 +7,7 @@ import AdoptCats from './containers/Adopt/AdoptCats/AdoptCats'
 import AdoptDogs from './containers/Adopt/AdoptDogs/AdoptDogs'
 import AdoptOther from './containers/Adopt/AdoptOther/AdoptOther'
 import About from './containers/About/About'
-import PetDetails from './components/PetDetails/PetDetails'
+import PetDetails from './containers/PetDetails/PetDetails.jsx'
 import Profile from './containers/Profile/Profile'
 import Auth from './containers/Auth/Auth'
 import Admin from './containers/Admin/Admin'
@@ -118,7 +118,7 @@ const App = () => {
                       <Route path="/adopt/cats" element={<AdoptCats setIsLogin={setIsLogin}/>} />
                       <Route path="/adopt/other" element={<AdoptOther setIsLogin={setIsLogin}/>} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/pets/:petId" element={<PetDetails />} />
+                      <Route path="/pets/:petId" element={<PetDetails setIsLogin={setIsLogin}/>} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/*" element={<Error />} />
                       <Route path="/unavailable" element={<UnderConstruction />} />

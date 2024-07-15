@@ -6,14 +6,17 @@ import AuthModal from '../Modal/AuthModal';
 import { useContext, useEffect, useState } from 'react';
 import { IoIosLogIn } from 'react-icons/io';
 import { AuthContext } from '../../contexts/AuthContext';
+import LoginModal from '../LoginModal/LoginModal';
 
-const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedPetIds}) => {
+const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedPetIds, setIsLogin}) => {
     const {currentUsername} = useContext(AuthContext)
     const isFavorited = favoritedPetIds.some(id => id === petId)
+    const [isLoginPrompt, setIsLoginPrompt] = useState(false)
 
     const onHeartToggle = (e) => {
         if (!currentUsername) {
             console.log("User not logged in");
+            openLoginModal();
         } else {
             //handling based whether pet is part of the favorited list
             if(!isFavorited) {
@@ -28,6 +31,14 @@ const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedP
     
     }
 
+    const openLoginModal = () => {
+        setIsLoginPrompt(true)
+    }
+
+    const closeLoginModal = () => {
+        setIsLoginPrompt(false)
+    }
+
     return (
         <div >
             {
@@ -40,7 +51,15 @@ const Heart = ({petId, handleFavoriteAdd, handleFavoriteDelete, size, favoritedP
                         className="heart-solid" 
                         size={size} 
                         onClick={onHeartToggle}/> 
-            }   
+            }  
+            {
+                isLoginPrompt && 
+                <LoginModal 
+                    closeLoginModal={closeLoginModal}
+                    setIsLoginPrompt={setIsLoginPrompt} 
+                    setIsLogin={setIsLogin} />
+            } 
+
         </div>
     )
 }
