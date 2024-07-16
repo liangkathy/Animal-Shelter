@@ -1,6 +1,14 @@
 .microchip-database {
     padding-top: 80px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-microchips {
+    padding-bottom: 20px;
 }
 
 .matching-container {
@@ -38,8 +46,9 @@
     padding: 15px;
     border: 1px solid gray;
     box-shadow: 0px 0 2px 1px white;
-    width: fit-content;
     border-radius: 6px;
+    width: fit-content;
+    min-width: 20%;
 }
 
 
@@ -49,4 +58,121 @@
 
 #chip-button:hover {
     background-color: rgb(73, 102, 116);
+}
+
+#chip-modal {
+    position: relative;
+    width: 400px;
+    height: 330px;
+    z-index: 951;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#chip-modal h3, #assign-pet-modal h3 {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    height: 60%;
+}
+.page-total{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.page-total input {
+    text-align: center;
+}
+
+.add-chip-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-chip-form input, .add-chip-form select {
+    width: 60%;
+    max-height: 2em;
+}
+
+.add-chip-form label {
+    width: 40%;
+}
+
+.chip-input {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.pet-select {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.chip-add-buttons {
+    padding-top: 5px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+#disabled-button {
+    cursor: not-allowed;
+    background-color: gray;
+}
+
+#disabled-button:hover {
+    box-shadow: none;
+}
+
+.chip-arrow {
+    position: absolute;
+    top: 2px;
+    cursor: pointer;
+}
+
+.arrow-back {
+    left: 30px;
+}
+
+.arrow-next {
+    right: 30px;
+}
+
+#assign-pet-modal {
+    position: relative;
+    height: 60%;
+    width: 360px;
+    height: 220px;
+    z-index: 951;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+
+}
+
+.assign-pet-dropdown {
+    width: 70%;
 }

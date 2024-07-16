@@ -8,14 +8,23 @@ import Button from '../../components/Button/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import ForbiddenError from '../Error/ForbiddenError'
 import { UserPathContext } from '../../contexts/UserPathContext'
+import { FaPlus } from "react-icons/fa6";
+import AddMicrochipModal from './AddMicrochipModal'
+import AssignToPetModal from './AssignToPetModal'
+import { PetsContext } from '../../contexts/PetsContext'
 
 const Microchip = () => {
     const navigate = useNavigate()
     const {theme} = useContext(ThemeContext)
+    const {allPets} = useContext(PetsContext)
     const [allMicrochips, setAllMicrochips] = useState([])
+    const [petsWithoutChip, setPetsWithoutChip] = useState([])
     const [searchInput, setSearchInput] = useState()
     const [filterBy, setFilterBy] = useState("All")
-
+    const [isAddMicrochip, setIsAddMicrochip] = useState(false)
+    const [isAssignToPet, setIsAssignToPet] = useState(false)
+    const [chipId, setChipId] = useState()
+    const [companyName, setCompanyName] = useState()
 
     useEffect(() => {
 
@@ -28,6 +37,21 @@ const Microchip = () => {
             }
             setAllMicrochips(response.data)
             
+        }
+        fetchData();
+    
+    }, [])
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const response = await getData("pets/microchips/null")
+            console.log(response);
+            if (response.hasError) {
+                console.log("message", response.message);
+                navigate("/accessdenied")
+            }
+            setPetsWithoutChip(response.data)  
         }
         fetchData();
     
@@ -60,9 +84,43 @@ const Microchip = () => {
     //creates new array where filtered items also meet search input
     const combinedSearchAndFilteredData = searchInput ? filteredData.filter(chip => chip.id.toString().includes(searchInput)) : filteredData
 
+    const openChipModal = () => {
+        setIsAddMicrochip(true)
+    }
+
+    const closeChipModal = () => {
+        setIsAddMicrochip(false)
+    }
+
+    const openAssignToPetModal = (id, company) => {
+        setIsAssignToPet(true)
+        setChipId(id)
+        setCompanyName(company)
+    }
+
+    const closeAssignToPetModal = () => {
+        setIsAssignToPet(false)
+    }
+
+    const navigateToPet = (chipId) => {
+        const pet = allPets.find(p => p.microchip.id == parseInt(chipId));
+        const petId = pet.id;
+        navigate(`/pets/${petId}`)
+    }
+
+    useEffect(() => {
+        console.log(allPets);
+    },[allMicrochips])
+
     return (
         <section className={`microchip-database ${theme}`}>
             <h4>Microchip Database</h4>
+
+            <Link id="plus" className='add-container add-microchips' onClick={openChipModal} >
+                <FaPlus className='add-button' size="1em"/>
+                Add Microchips
+            </Link>
+
             <div className='matching-container'>
                 <form className="search-form">
                     <Input type={'search'} 
@@ -92,9 +150,9 @@ const Microchip = () => {
                                 <div>Company: {chip.company}</div>
                                 <div>Status: {chip.available ? "Available" : "Unavailable"}</div>
                                 {chip.available ? (
-                                    <Button text={"Assign to Pet"} />
+                                    <Button text={"Assign to Pet"} handleClick={() => {openAssignToPetModal(chip.id, chip.company)}}/>
                                 ) : (
-                                    <Button text={"See Assigned Pet"} cssId={"chip-button"} />
+                                    <Button text={"See Assigned Pet"} cssId={"chip-button"} handleClick={() => {navigateToPet(chip.id)}}/>
                                 )}
                             </div>
                         ))
@@ -111,9 +169,9 @@ const Microchip = () => {
                                     <div>Company: {chip.company}</div>
                                     <div>Status: {chip.available ? "Available" : "Unavailable"}</div>
                                     {chip.available ? (
-                                        <Button text={"Assign to Pet"} />
+                                        <Button text={"Assign to Pet"} handleClick={() => {openAssignToPetModal(chip.id, chip.company)}}/>
                                     ) : (
-                                        <Button text={"See Assigned Pet"} cssId={"chip-button"} />
+                                        <Button text={"See Assigned Pet"} cssId={"chip-button"} handleClick={() => {navigateToPet(chip.id)}}/>
                                     )}
                                 </div>
                             ))
@@ -121,6 +179,27 @@ const Microchip = () => {
                     )
                 }
             </div>
+            {
+                isAddMicrochip &&
+                <AddMicrochipModal 
+                petsWithoutChip={petsWithoutChip}
+                setPetsWithoutChip={setPetsWithoutChip}
+                allMicrochips={allMicrochips}
+                setAllMicrochips={setAllMicrochips}
+                closeChipModal={closeChipModal} />
+            }
+
+            {
+                isAssignToPet && 
+                <AssignToPetModal
+                petsWithoutChip={petsWithoutChip}
+                setPetsWithoutChip={setPetsWithoutChip}
+                closeAssignToPetModal={closeAssignToPetModal}
+                chipId={chipId}
+                company={companyName} 
+                setAllMicrochips={setAllMicrochips}
+                allMicrochips={allMicrochips}/>
+            }
 
         </section>
     )
