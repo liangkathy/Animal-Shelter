@@ -18,13 +18,13 @@ const Application = () => {
                     applications.length === 0 ? (
                         <>
                             <h3>No applications submitted yet!</h3>
-                            <p>Want to apply for a pet? Apply <Link to="/apply">here</Link></p>
+                            <p>Want to apply for a pet? Apply <Link to="/apply" className={`a-${theme}`}>here</Link></p>
                         </>
                         ) : (
                             applications.map((app, i) => { 
                                 return (
-                                <Link to={`/applications/${app.id}`}>
-                                    <div key={i} className="app-label">
+                                <Link key={i} to={`/applications/${app.id}`} className={`a-${theme}`}>
+                                    <div className="app-label">
                                         
                                         {app.pets.length == 0 ? "Application" : `Application for ${app.pets.map(pet => pet.name).join(' & ')}`}
                                         

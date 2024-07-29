@@ -9,7 +9,7 @@ const ForbiddenError = () => {
         <section className={`error-section ${theme}`}>
             <h4>403: FORBIDDEN</h4>
             <div>You do not have permissions to view this page</div>
-            <Link to="/">Return Home</Link>
+            <Link to="/" className={`a-${theme}`}>Return Home</Link>
         </section>
     )
 }

@@ -50,7 +50,7 @@ const PetDetails = ({setIsLogin}) => {
     return (
         <section className={`${theme} details-container`}>
             <div>
-                <Link onClick={handleBackOnClick} className='back-link'><IoIosArrowRoundBack size="2em"/> Back</Link>
+                <Link onClick={handleBackOnClick} className={`back-link a-${theme}`}><IoIosArrowRoundBack size="2em"/> Back</Link>
             </div>
 
             <div className="pet-details">
@@ -65,7 +65,7 @@ const PetDetails = ({setIsLogin}) => {
                 <div>Sex: {pet.sex}</div>
                 <div>Weight: {`${pet.weight} pounds`}</div>
                 <div>Date of birth: {pet.dob}</div>
-                <Link to="/apply" onClick={onApply} className="apply-link">{`Apply for ${pet.name} here`}
+                <Link to="/apply" onClick={onApply} className={`apply-link a-${theme}`}>{`Apply for ${pet.name} here`}
                     <IoIosArrowRoundForward size="2.1em"/>
                 </Link>
             </div>

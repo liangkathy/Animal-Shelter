@@ -22,7 +22,7 @@ const LoginModal = ({closeLoginModal, setIsLogin}) => {
           <div id="login-modal" className={`modal-${theme}`}>
                   <IoClose onClick={closeLoginModal} className='close-modal' size="1.5em"/>
                   <h3>This feature requires an account</h3>
-                  <div>Please <Link to="/auth" onClick={setLogIn}>log in</Link> or <Link to='/auth' onClick={setSignUp}>sign up</Link></div>
+                  <div>Please <Link to="/auth" className={`a-${theme}`} onClick={setLogIn}>log in</Link> or <Link to='/auth' className={`a-${theme}`} onClick={setSignUp}>sign up</Link></div>
           </div>
       </div>
     )

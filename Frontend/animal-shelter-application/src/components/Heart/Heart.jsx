@@ -2,7 +2,6 @@
 import './Heart.css'
 import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
-import AuthModal from '../Modal/AuthModal';
 import { useContext, useEffect, useState } from 'react';
 import { IoIosLogIn } from 'react-icons/io';
 import { AuthContext } from '../../contexts/AuthContext';

@@ -12,38 +12,27 @@
     z-index: 1000;
 }
 
-#logo-dark a:visited {
-    color: rgb(231, 236, 239);
+#logo-light, #logo-light a:visited {
+    color: #026670;
 }
-.logo-dark a:hover {
-    color: rgb(155, 175, 184);
+
+#logo-light:hover {
     text-decoration: none;
-    text-align: center;
 }
 
-.logo-dark {
-    color: rgb(231, 236, 239);
+#logo-dark, #logo-dark a:visited {
+    color: #EDEAE5;
 }
 
-.logo-light {
-    color: rgb(39, 67, 70);
-}
-
-#logo-light a:visited {
-    color: rgb(39, 67, 70);
-}
-
-.logo-light a:hover {
-    color: rgb(23, 28, 35);
+#logo-dark:hover {
     text-decoration: none;
-    text-align: center;
 }
 
 #profile-icon:hover {
     text-decoration: none;
 }
 
-#profile-icon:visited {
+#profile-icon, #profile-icon:visited {
     color: white;
 }
 
@@ -83,27 +72,12 @@
     
 }
 
-.logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.logo-text {
-    font-weight: 550;
-}
-
-.logo-text-dark {
-    color: aliceblue
-}
-
-.logo-text-light {
-    color: rgb(39, 67, 70);
-}
-
 .logoimg {
-    width: 70px;
+    max-height: 90px;
+}
+
+.logoimg-light {
+    margin-top: 5px;
 }
 
 .right-auth-header {
@@ -152,6 +126,4 @@
     .logo {
         font-size: 1.6em;
     }
-}
-
 }

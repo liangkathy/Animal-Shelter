@@ -78,9 +78,9 @@ const About = () => {
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             
             <div className='about-links'>
-                <Link to="/unavailable">Get involved</Link>
-                <Link to="/adopt">Meet our adoptable pets</Link>
-                <Link to="/unavailable">Upcoming events</Link>
+                <Link to="/unavailable" className={`a-${theme}`}>Get involved</Link>
+                <Link to="/adopt" className={`a-${theme}`}>Meet our adoptable pets</Link>
+                <Link to="/unavailable" className={`a-${theme}`}>Upcoming events</Link>
             </div>
 
             <div className='contact-container'>

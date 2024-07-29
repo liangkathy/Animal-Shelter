@@ -46,11 +46,11 @@ const Adopt = () => {
                     })
                 }
             </div>
-            <Link className="view-all" to="/adopt/all">View All
+            <Link className={`view-all a-${theme}`} to="/adopt/all">View All
                 <IoIosArrowRoundForward size="2em"/>
             </Link>
 
-            <p className="learn-more">Learn more about the <Link to="/process&fees">Process & Fees</Link></p>
+            <p className="learn-more">Learn more about the <Link to="/process&fees" className={`a-${theme}`}>Process & Fees</Link></p>
         </section>
     )
 }

@@ -33,17 +33,17 @@ const AdminHeader = () => {
                     currentUsername && 
                     
                     <>
-                        <div className={`logo logo-${theme}`} id={`logo-${theme}`}><Link to="/admin/home">Critters Animal Rescue</Link></div>
-                        <Link to="/admin/home" className="nav-link">Admin Home</Link>
+                        <div className={`logo logo-${theme}`} id={`logo-${theme}`}><Link id={`logo-${theme}`} to="/admin/home" className="cherry-bomb-font">Critters Animal Rescue</Link></div>
+                        <Link to="/admin/home" className={`nav-link a-${theme}`}>Admin Home</Link>
 
-                        <Link to="/profile" id="profile-icon">
+                        {/* <Link to="/profile" id="profile-icon">
                             <div className="profile-icon">
                                 {
                                     currentUsername[0].toUpperCase()
                                 }
                             </div>
                             
-                        </Link>
+                        </Link> */}
                         
                         <Link to="/auth"><Button text={"Logout"} handleClick={clearAuthData}/></Link>
                     

@@ -41,7 +41,7 @@ const Login = ({setLoginFormData, handleLogin, toggleAuthMode, errorMessage}) =>
                             <div className="rm-container">
                                 <Input type={'checkbox'}name={'remember-me'} labelTextAfter={'Remember me'}/>
                             </div>
-                            <Link to="/forgotpassword">Forgot password?</Link>
+                            <Link to="/forgotpassword" className={`a-${theme}-b`}>Forgot password?</Link>
                         </div>
                         
                         <div className="login-button">
@@ -64,7 +64,7 @@ const Login = ({setLoginFormData, handleLogin, toggleAuthMode, errorMessage}) =>
 
                 </div>
 
-                <div className="to-signup">Need an account? <Link onClick={toggleAuthMode}>Sign up</Link></div>
+                <div className="to-signup">Need an account? <Link onClick={toggleAuthMode} className={`a-${theme}-b`}>Sign up</Link></div>
 
             </div> 
             

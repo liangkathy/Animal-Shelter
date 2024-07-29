@@ -103,7 +103,7 @@ const Microchip = () => {
     }
 
     const navigateToPet = (chipId) => {
-        const pet = allPets.find(p => p.microchip.id == parseInt(chipId));
+        const pet = allPets.find(p => p.microchip && p.microchip.id == parseInt(chipId));
         const petId = pet.id;
         navigate(`/pets/${petId}`)
     }
@@ -116,7 +116,7 @@ const Microchip = () => {
         <section className={`microchip-database ${theme}`}>
             <h4>Microchip Database</h4>
 
-            <Link id="plus" className='add-container add-microchips' onClick={openChipModal} >
+            <Link id="plus" className={`add-container add-microchips a-${theme}`} onClick={openChipModal} >
                 <FaPlus className='add-button' size="1em"/>
                 Add Microchips
             </Link>

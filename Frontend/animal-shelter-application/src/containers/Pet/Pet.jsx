@@ -7,7 +7,6 @@ import Heart from '../../components/Heart/Heart';
 import './Pet.css'
 import { FavoritesContext } from '../../contexts/FavoritesContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import AuthModal from '../../components/Modal/AuthModal';
 
 const Pet = ({id, name, sex, age, breed, imgURL, addId, setIsLogin}) => {
     const username = sessionStorage.getItem("username");
@@ -90,7 +89,7 @@ const Pet = ({id, name, sex, age, breed, imgURL, addId, setIsLogin}) => {
             <div>{sex}</div>
             <div>{breed}</div>
 
-            <Link to={`/pets/${id}`} className="meet-link">Meet 
+            <Link to={`/pets/${id}`} className={`meet-link a-${theme}`}>Meet 
                 <IoIosArrowRoundForward size="2em"/>
             </Link>
             <Heart size={'1.5em'} 

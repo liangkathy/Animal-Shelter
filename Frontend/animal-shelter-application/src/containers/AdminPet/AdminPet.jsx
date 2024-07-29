@@ -70,7 +70,7 @@ const AdminPet = () => {
     return (
         <section className={`modify-pet-section ${theme}`}>
             <h4>Modify Pet Information</h4>
-            <Link id="plus" className='add-container' onClick={openAddModal}>
+            <Link id="plus" className={`add-container a-${theme}`} onClick={openAddModal}>
                 <FaPlus className='add-button' size="1em"/>
                 Add Pet
             </Link>

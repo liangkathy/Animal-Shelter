@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import './Header.css'
 import { AuthContext } from '../../contexts/AuthContext'
-import AuthHeader from '../../components/Auth/AuthHeader/AuthHeader'
 import { ThemeContext } from '../../contexts/ThemeContext'
 import logo from "../../assets/logo.png";
 import darklogo from "../../assets/dark-logo.png";
@@ -91,8 +90,7 @@ const Header = ({setIsLogin}) => {
 
             <header className={`header ${theme} ${!isAdminPath ? undefined : "hidden"}`}>
                 <Link to="/" id={`logo-${theme}`} className="logo-container">
-                    <img className="logoimg" src={theme === "dark" ? darklogo : logo} alt='animal-logo'/>
-                    <div className={`logo-text logo-${theme} logo-${theme}`}>Critters Animal Rescue</div>
+                    <img className="logoimg logoimg-light" src={theme === "dark" ? darklogo : logo} alt='shelter-logo'/>
                 </Link>
                 
                 {

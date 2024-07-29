@@ -150,8 +150,8 @@ const Profile = () => {
                             username && username[0].toUpperCase()
                         }
                     </div>
-                    <Link to="/favorites">Favorite Pets</Link>
-                    <Link to="/applications">Applications</Link>
+                    <Link to="/favorites" className={`a-${theme}`}>Favorite Pets</Link>
+                    <Link to="/applications" className={`a-${theme}`}>Applications</Link>
                 </div>
                     
                 {

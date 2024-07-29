@@ -108,12 +108,12 @@
 }
 
 .auth-dark {
-    background-color: rgb(100, 100, 100);
+    background-color: #313131;
     box-shadow: 0px 0 3px 2px white;
 }
 
 .auth-light {
-    background-color: rgb(244, 244, 244);
+    background-color: rgb(236, 236, 232);
     box-shadow: 0px 0 3px 2px rgb(203, 203, 203);
 }
 

@@ -1,5 +1,3 @@
-import Header from '../Header/Header'
-import AuthHeader from '../../components/Auth/AuthHeader/AuthHeader'
 import './Error.css'
 import { useContext } from 'react'
 import { ThemeContext } from '../../contexts/ThemeContext'
@@ -12,7 +10,7 @@ const Error = () => {
     return (
         <section className={`error-section ${theme}`}>
             <h4>404: PAGE NOT FOUND</h4>
-            <Link to={!isAdminPath ? "/" : "/admin/home"}>Return Home</Link>
+            <Link to={!isAdminPath ? "/" : "/admin/home"} className={`a-${theme}`}>Return Home</Link>
         </section>
     )
 }

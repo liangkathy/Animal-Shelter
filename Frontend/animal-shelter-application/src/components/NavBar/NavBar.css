@@ -53,16 +53,52 @@
 
 a:link {
     text-decoration: none;
-    color: rgb(128, 155, 206, .75);
+    color: rgb(2, 102, 112, .8);
 }
 
 a:hover {
     text-decoration: underline;
-    color: rgb(128, 155, 206);
+    color: rgb(2, 102, 112);
 }
 
 a:visited {
-    color: rgb(128, 155, 206, .75);
+    color: rgb(2, 102, 112, .8);
+}
+
+/* .a-dark-c:link {
+    color: rgb(243, 238, 188, .8);
+}
+
+.a-dark-c:hover {
+    color: rgb(243, 238, 188);
+}
+
+.a-dark-c:visited {
+    color: rgba(243, 238, 188, .8);
+} */
+
+.a-light:link {
+    color: rgb(2, 102, 112, .8);
+}
+
+.a-light:hover {
+    color: rgb(2, 102, 112);
+}
+
+.a-light:visited {
+    color: rgb(2, 102, 112, .8);
+}
+
+.a-dark:link, .a-dark-b:link {
+    color: rgb(159, 237, 215, .8);
+}
+
+.a-dark:hover, .a-dark-b:hover {
+    color: rgb(159, 237, 215);
+}
+
+.a-dark:visited, .a-dark-b:visited {
+    color: rgba(159, 237, 215, .8);
 }
 
 .nav-dark {
@@ -82,19 +118,23 @@ a:visited {
 }
 
 #auth-options-dark {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(237, 234, 229, 0.8);
+    font-weight: 500;
 }
 
 #auth-options-dark:hover {
-    color: white;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 #auth-options-light {
-    color: rgba(53, 72, 111, 0.75);
+    color: rgba(20, 65, 70, 0.8);
+    font-weight: 500;
 }
 
 #auth-options-light:hover {
-    color: rgb(53, 72, 111);
+    color: rgb(4, 48, 53);
+    text-decoration: none;
 }
   
 

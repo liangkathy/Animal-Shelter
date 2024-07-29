@@ -38,7 +38,7 @@ const Favorites = () => {
 
             <div className="favorites-container">
                 {
-                    favoritePets.length === 0 ? <h3>No favorites added yet! See all of our adoptable pets <Link to="/adopt/all">here</Link>.</h3> :
+                    favoritePets.length === 0 ? <h3>No favorites added yet! See all of our adoptable pets <Link to="/adopt/all" className={`a-${theme}`}>here</Link>.</h3> :
 
                     favoritePets.map((pet, i) => {
                         return <Pet key={i} 

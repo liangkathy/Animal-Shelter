@@ -31,9 +31,9 @@ const AdoptCats = ({setIsLogin}) => {
                 <FavoritesHeart />
             </div>
             <div className="adopt-nav">
-                <Link to="/adopt/all">See All Adoptables</Link>
-                <Link to="/adopt/dogs">See Adoptable Dogs</Link>
-                <Link to="/adopt/other">See Other Animals</Link>
+                <Link to="/adopt/all" className={`a-${theme}`}>See All Adoptables</Link>
+                <Link to="/adopt/dogs" className={`a-${theme}`}>See Adoptable Dogs</Link>
+                <Link to="/adopt/other" className={`a-${theme}`}>See Other Animals</Link>
             </div>
             <div className="pet-card-container">
                 {

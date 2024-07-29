@@ -12,7 +12,6 @@ import { deleteData } from '../../api/api.js'
 const ApplicationDetails = () => {
     const navigate = useNavigate()
     const {theme} = useContext(ThemeContext)
-    const {applications, setApplications} = useContext(ApplicationsContext)
     const {applicationId} = useParams()
     const app = applications.find(a => a.id === parseInt(applicationId))
 
@@ -41,7 +40,7 @@ const ApplicationDetails = () => {
     return (
         <section className={`application-details-container ${theme}`}>
             <div>
-                <Link onClick={handleBackOnClick} className='back-link'><IoIosArrowRoundBack size="2em"/> Back</Link>
+                <Link onClick={handleBackOnClick} className={`back-link a-${theme}`}><IoIosArrowRoundBack size="2em"/> Back</Link>
             </div>
 
             <div className="application-details">

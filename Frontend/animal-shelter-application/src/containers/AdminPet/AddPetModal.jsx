@@ -86,9 +86,9 @@ const AddPetModal = ({closeAddModal, availableMicrochipsIds, availableMicrochips
                     {
                         errorMessage !== null && (
                                 Array.isArray(errorMessage) ? (
-                                    errorMessage.map((error, i) => <div key={i}>{error}</div>)
+                                    errorMessage.map((error, i) => <div key={i} className='error'>{error}</div>)
                                 ) : (
-                                    <div>{errorMessage}</div>
+                                    <div className='error'>{errorMessage}</div>
                                 )
                             )
                     }

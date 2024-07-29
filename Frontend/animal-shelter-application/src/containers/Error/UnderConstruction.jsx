@@ -10,7 +10,7 @@ const UnderConstruction = () => {
     return (
         <section className={`error-section ${theme}`}>
             <h4>503: UNDER CONSTRUCTION</h4>
-            <Link to={!isAdminPath ? "/" : "/admin/home"}>Return Home</Link>
+            <Link to={!isAdminPath ? "/" : "/admin/home"} className={`a-${theme}`}>Return Home</Link>
         </section>
     )
 }

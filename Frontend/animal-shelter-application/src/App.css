@@ -27,12 +27,13 @@ h4 {
 }
 
 .light {
-  background-color: white;
+  background-color: #FCFCF7FF;
+  color: #252525;
 }
 
 .dark {
-  background-color: rgb(54, 54, 54);
-  color: white;
+  background-color: rgb(25,25,25);
+  color: #EDEAE5;
 }
 
 .app-label {
@@ -42,4 +43,9 @@ h4 {
 
 .hidden {
   display: none;
+}
+
+.cherry-bomb-font {
+  font-family: "Cherry Bomb One", sans-serif;
+  letter-spacing: 1px;
 }

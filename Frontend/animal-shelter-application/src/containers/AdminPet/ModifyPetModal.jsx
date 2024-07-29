@@ -128,7 +128,7 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
                             :` ${petImage}`
                         } 
                             alt="pet image" width="35%" />
-                        <MdModeEdit className='img-edit pencil' onClick={handleImageEdit}/>
+                        <MdModeEdit className={`img-edit pencil pencil-${theme}`} onClick={handleImageEdit}/>
                     </div>
                     <div>Name: {pet.name}</div>
                     <div>Breed: {pet.breed}</div>
@@ -138,7 +138,7 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
                         { !isEditWeight ?
                             <>
                                 {` ${pet.weight} pounds`}
-                                <MdModeEdit className='weight-edit pencil' onClick={handleWeightEdit}/>
+                                <MdModeEdit className={`weight-edit pencil pencil-${theme}`} onClick={handleWeightEdit}/>
                             </>
                             :
                             <Input type={'number'} 
@@ -153,7 +153,7 @@ const ModifyPetModal = ({closeModal, petId, availableMicrochipsIds, availableMic
                     <div className='chip-edit-div'>Microchip:
                         {
                             pet.microchip ? (` ${pet.microchip.id}`) : 
-                            !isEditMicrochip ? <> None<MdModeEdit className='chip-edit pencil' onClick={handleMicrochipEdit}/></> :
+                            !isEditMicrochip ? <> None<MdModeEdit className={`chip-edit pencil pencil-${theme}`} onClick={handleMicrochipEdit}/></> :
                             availableMicrochipsIds.length > 0 &&
                                 <select className='chip-dropdown' type="text" name="microchipId" onChange={handleChange}>
                                     <option value="null">None</option>

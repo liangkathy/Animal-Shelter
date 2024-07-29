@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom'
 import { IoIosArrowRoundForward } from "react-icons/io";
 import './NewsCard.css'
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import ReactCrop from 'react-image-crop'
 
@@ -14,7 +14,7 @@ const NewsCard = ({src, alt, title, text, linkText, linkPath}) => {
             <div className="card-text">
                 <p className='news-title'>{title}</p>
                 <p>{text}</p>
-                <Link to={linkPath}>{linkText}
+                <Link to={linkPath} className={`home-link a-${theme}`}>{linkText}
                     <IoIosArrowRoundForward size="2em"/>
                 </Link>
             </div>

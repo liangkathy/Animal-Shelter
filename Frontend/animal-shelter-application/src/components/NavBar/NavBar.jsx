@@ -15,9 +15,9 @@ const NavBar = ({isNavOpen, closeNavByLink, setLogIn, setSignUp, currentUsername
     return (
         <nav id={`${!setLogIn ? "navbar-logged-in" : undefined}`} className={`navbar ${isNavOpen && "nav-open"} nav-${theme}`}>
                 <ul id={`${!setLogIn ? "navlist" : undefined}`} className='nav-list'>
-                    <li className='nav-link' onClick={closeNavByLink}><Link to="/" >Home</Link></li>
-                    <li className='nav-link' onClick={closeNavByLink}><Link to="/adopt" >Adopt</Link></li>
-                    <li className='nav-link' onClick={closeNavByLink}><Link to="/about" >About Us</Link></li>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/" className={`a-${theme}`}>Home</Link></li>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/adopt" className={`a-${theme}`}>Adopt</Link></li>
+                    <li className='nav-link' onClick={closeNavByLink}><Link to="/about" className={`a-${theme}`}>About Us</Link></li>
                 </ul>
                 {
                     !currentUsername &&

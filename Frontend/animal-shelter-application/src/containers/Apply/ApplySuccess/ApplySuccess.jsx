@@ -16,7 +16,7 @@ const ApplySuccess = () => {
         <section className={`apply-success ${theme}`}>
             <h4>Application submitted!</h4>
             <p>Thank you for submitting an application. We will review your response and be in touch shortly!</p>
-            <p>You can review your applications <Link to="/applications" onClick={onClick}>here</Link></p>
+            <p>You can review your applications <Link to="/applications" onClick={onClick} className={`a-${theme}`}>here</Link></p>
         </section>
     )
 }

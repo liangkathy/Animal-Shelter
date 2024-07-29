@@ -33,13 +33,11 @@ import ForbiddenError from './containers/Error/ForbiddenError.jsx'
 import UnderConstruction from './containers/Error/UnderConstruction.jsx'
 import Microchip from './containers/Microchip/Microchip.jsx'
 import { UserPathContext } from './contexts/UserPathContext.js'
-import { components } from 'react-select'
-import AdminSignUp from './containers/Admin/AdminSignUp/AdminSignUp.jsx'
 import AdminPet from './containers/AdminPet/AdminPet.jsx'
+import AdminApplication from './containers/AdminApplication/AdminApplication.jsx'
 
 
 const App = () => {
-  const navigate = useNavigate()
   const[theme, setTheme] = useState("light")
   const[currentUsername, setCurrentUsername] = useState(null)
   const [isAdminPath, setIsAdminPath] = useState(false)
@@ -134,6 +132,7 @@ const App = () => {
                       <Route path="/admin/home" element={<AdminHome />} />
                       <Route path="/admin/microchips" element={<Microchip />} />
                       <Route path="/admin/pets" element={<AdminPet />} />
+                      <Route path="/admin/applications" element={<AdminApplication />} />
                       
                     </Routes>
 

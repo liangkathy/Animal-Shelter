@@ -12,21 +12,12 @@ import { useLocation } from 'react-router-dom';
 const Footer = () => {
     const {theme} = useContext(ThemeContext)
     const userPath = sessionStorage.getItem("userPath")
-    // const {isUserPath, setIsUserPath} = useContext(UserPathContext)
     const location = useLocation()
-
-    // useEffect(() => {
-    //     if (isUserPath) {
-    //         setIsUserPath(sessionStorage.getItem("userPath"))
-    //     }
-    // },[isUserPath])
 
     const fixFooter = location.pathname === '/auth';
 
     const address = [
-        "1000 Address Lane",
-        "Austin, TX 78701",
-        "(512)111-1111"
+        "Austin, TX"
     ]
 
     const socials = [
@@ -51,17 +42,18 @@ const Footer = () => {
             <div className="footer-left">
                 
                 <div>
-                    <div>
+                    <div className='footer-name cherry-bomb-font'>Site by: Kathy Liang</div>
+                    {/* <div>
                         {
                             address.map((line, i) => {
                                 return <div key={i}>{line}</div>
                             })
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="footer-center">
-                <div className='footer-name'>Site by: Kathy Liang</div>
+                
                 <div className={`toggle-container ${userPath == "true"|| userPath == null ? "hidden" : undefined}`}>
                     <Toggle className={'user-Toggle'} />
                     <label>Admin Mode</label>
@@ -69,12 +61,12 @@ const Footer = () => {
             </div>
 
             <div className="footer-right">
-                <div className="logo-footer" >Critters Animal Rescue</div>
+                <div className="logo-footer cherry-bomb-font" >Critters Animal Rescue</div>
                 <ul className='social-list'>
                     {
                         socials.map((each,i) => {
                             return <li key={i} className={`socials ${each.name}`}>
-                                        <a href={each.link}>{each.logo}</a>
+                                        <a href={each.link} className={`a-${theme}`}>{each.logo}</a>
                                 </li>
                         })
                     }

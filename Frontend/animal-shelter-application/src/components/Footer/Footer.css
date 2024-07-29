@@ -51,12 +51,12 @@ footer {
 }
 
 .footer-dark {
-    background-color: rgb(88, 88, 88);
+    background-color: rgb(49, 49, 49);
     color: white;
 }
 
 .footer-light {
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(236, 236, 232);
 }
 
 @media screen and (min-width: 550px) { 

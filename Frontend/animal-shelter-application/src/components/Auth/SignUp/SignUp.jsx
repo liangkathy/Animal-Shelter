@@ -32,7 +32,7 @@ const SignUp = ({signupFormData, setSignUpFormData, handleSignup, toggleAuthMode
             <div className="auth-container">
                 
                 <div className={`signup-container auth-${theme}`}>
-                <Link className="back-to-login" onClick={toggleAuthMode}>
+                <Link className={`back-to-login a-${theme}-b`} onClick={toggleAuthMode}>
                     <IoIosArrowRoundBack size="1.5em"/>
                     Back to Log in
                 </Link>
@@ -103,7 +103,7 @@ const SignUp = ({signupFormData, setSignUpFormData, handleSignup, toggleAuthMode
                             </div>
 
                             <div>
-                                <p className="terms">By clicking on Sign up, you agree to Critters Animal Rescue <Link to="/terms">Terms and Conditions of Use</Link></p>
+                                <p className="terms">By clicking on Sign up, you agree to Critters Animal Rescue <Link to="/terms" className={`a-${theme}-b`}>Terms and Conditions of Use</Link></p>
                             </div>
 
                         </form>  

@@ -30,19 +30,19 @@ const AdminHome = () => {
             <h4>Admin Home</h4>
             <div className='admin-tools-container'>
                 <div className='admin-tool'>
-                    <Link to="/admin/pets"><h5>Modify Pet Information</h5></Link>
+                    <Link to="/admin/pets" className={`a-${theme}`}><h5>Modify Pet Information</h5></Link>
                     <MdOutlinePets size="10.5em"/>
                 </div>
                 <div className='admin-tool'>
-                    <Link to="/unavailable"><h5>View Pending Applications</h5></Link>
+                    <Link to="/admin/applications" className={`a-${theme}`}><h5>View Pending Applications</h5></Link>
                     <ImProfile size="10em"/>
                 </div>
                 <div className='admin-tool'>
-                    <Link to="/admin/microchips"><h5>View Microchip Database</h5></Link>
+                    <Link to="/admin/microchips" className={`a-${theme}`}><h5>View Microchip Database</h5></Link>
                     <BsClipboardPlusFill size="10em"/>
                 </div>
                 <div className='admin-tool'>
-                    <Link to="/admin/signup"><h5>Create New Admin User</h5></Link>
+                    <Link to="/admin/signup" className={`a-${theme}`}><h5>Create New Admin User</h5></Link>
                     <FaUser size="10em"/>
                 </div>
             </div>

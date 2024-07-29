@@ -5,7 +5,7 @@
 }
 
 .heart-dark {
-    color: rgb(234, 238, 240);
+    color: rgb(243, 238, 188);
 }
 
 .heart-light{
@@ -26,10 +26,10 @@
 
 .count-dark {
     background-color: rgb(155, 175, 184);
-    color: rgb(38, 47, 58)
+    color: rgb(25, 25, 25);
 }
 
 .count-light {
-    background-color: rgb(38, 47, 58);
+    background-color: #00606BFF;
     color: white;
 }
