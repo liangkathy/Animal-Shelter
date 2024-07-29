@@ -8,7 +8,7 @@
 + a json web token is sent from the backend and stored to local storage (required to send requests to the backend)
   
 ### Main
-**Header**. 
+**Header** 
 + Includes nav bar with a response hamburger menu for smaller screen sizes
 + Logo links to home 
 + Nav bar links include Home, Adopt, and About Us
@@ -38,7 +38,7 @@
 + each pet can be clicked on to view details
 + there is an apply link on the pet details page that leads users to the application form
   
-**Profile*  
+**Profile**  
 + users can view profile details, edit their account, or delete their account from this page
 + there is also a link to the user favorites and their applications
   
@@ -61,12 +61,12 @@
 
 **admin homepage**  
 + displays four main routes: 
-1. modify pet information(not built out)
-2. view pending applications(not built out)
-3. view microchip database(mostly built out but missing edit/add/delete funtionality) > has a search and sorting feature that dynamically loads results
+1. modify pet information
+2. view pending applications (built out but will be adding improvements)
+3. view microchip database > has a search and sorting feature that dynamically loads results
 4. create admin user 
 
-**admin mode toggle**. 
+**admin mode toggle**  
 + Located at the footer
 + allows the admin user to toggle between admin view and user view
 + is not shown to users without admin access  
