@@ -36,4 +36,4 @@ build/
 application.properties
 
 ### Internal Constants ###
-InternalConstants
+InternalConstants.java
