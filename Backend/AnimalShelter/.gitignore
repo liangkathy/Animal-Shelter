@@ -34,3 +34,6 @@ build/
 
 ### Application Properties ###
 application.properties
+
+### Internal Constants ###
+InternalConstants
