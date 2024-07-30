@@ -7,9 +7,12 @@ import com.example.animalshelter.utils.MockConstants;
 
 import com.example.animalshelter.repository.IUserRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ContextConfiguration;
 
 
 import java.util.List;
@@ -19,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@ContextConfiguration(classes = UserService.class)
 public class UserServiceTest {
     @Autowired
     UserService userService;
@@ -31,6 +35,9 @@ public class UserServiceTest {
 
     @MockBean
     IApplicationRepository applicationRepository;
+
+    @MockBean
+    PasswordEncoder passwordEncoder;
 
     //---GET ALL USERS---
     //HAPPY PATH
