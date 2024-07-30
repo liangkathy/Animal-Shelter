@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,12 +27,16 @@ public class MicrochipControllerTesting {
     @MockBean
     MicrochipService microchipService;
 
+    //mock user role and admin role
+
+
     //---GET ALL MICROCHIPS---
     //HAPPY PATH
     @Test
     public void getAllMicrochips() throws Exception {
         when(microchipService.getAllMicrochips()).thenReturn(MockConstants.mockMicrochips);
-        mockMvc.perform(get("/microchips"))
+        mockMvc.perform(get("/microchips")
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(microchipService, times(1)).getAllMicrochips();
@@ -42,7 +48,8 @@ public class MicrochipControllerTesting {
     @Test
     public void getMicrochipById() throws Exception {
         when(microchipService.getMicrochipById(anyInt())).thenReturn(MockConstants.mockMicrochip);
-        mockMvc.perform(get("/microchips/{id}" ,1))
+        mockMvc.perform(get("/microchips/{id}" ,1)
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(microchipService, times(1)).getMicrochipById(anyInt());
@@ -55,6 +62,7 @@ public class MicrochipControllerTesting {
     public void getMicrochipByStatus() throws Exception {
         when(microchipService.getMicrochipsByStatus(anyString())).thenReturn(MockConstants.mockMicrochips);
         mockMvc.perform(get("/microchips")
+                .with(user("admin").roles("USER", "ADMIN"))
                 .param("available", "true"))
                 .andExpect(status().isOk());
 
@@ -68,6 +76,7 @@ public class MicrochipControllerTesting {
     public void createMicrochip() throws Exception {
         when(microchipService.createMicrochips(anyList())).thenReturn(MockConstants.mockMicrochips);
         mockMvc.perform(post("/microchips")
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Mapper.convertToJSON(MockConstants.microchipDTOs)))
                 .andExpect(status().isCreated());
@@ -86,6 +95,7 @@ public class MicrochipControllerTesting {
 
         when(microchipService.updateMicrochip(anyInt(),any())).thenReturn(MockConstants.mockMicrochip);
         mockMvc.perform(put("/microchips/{id}" ,1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Mapper.convertToJSON(MockConstants.mockMicrochipDTO3)))
                 .andExpect(status().isOk());
@@ -98,7 +108,8 @@ public class MicrochipControllerTesting {
     //HAPPY PATH
     @Test
     public void deleteMicrochip() throws Exception {
-        mockMvc.perform(delete("/microchips/{id}" ,1))
+        mockMvc.perform(delete("/microchips/{id}" ,1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf()))
                 .andExpect(status().isOk());
 
         verify(microchipService, times(1)).deleteMicrochip(anyInt());

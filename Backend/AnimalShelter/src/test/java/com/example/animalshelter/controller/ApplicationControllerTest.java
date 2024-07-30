@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,7 +30,8 @@ public class ApplicationControllerTest {
     @Test
     public void testGetAllApplications() throws Exception {
         when(applicationService.getAllApplications()).thenReturn(MockConstants.mockApplications);
-        mockMvc.perform(get("/applications"))
+        mockMvc.perform(get("/applications")
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(applicationService, times(1)).getAllApplications();
@@ -40,7 +43,8 @@ public class ApplicationControllerTest {
     @Test
     public void testGetApplicationById() throws Exception {
         when(applicationService.getApplicationById(anyInt())).thenReturn(MockConstants.mockApplication);
-        mockMvc.perform(get("/applications/{id}", 1))
+        mockMvc.perform(get("/applications/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(applicationService, times(1)).getApplicationById(anyInt());
@@ -52,7 +56,8 @@ public class ApplicationControllerTest {
     @Test
     public void testGetApplicationsByUser() throws Exception {
         when(applicationService.getApplicationsByUsername(anyString())).thenReturn(MockConstants.mockApplications);
-        mockMvc.perform(get("/applications/users/{username}", MockConstants.mockUser.getUsername()))
+        mockMvc.perform(get("/applications/users/{username}", MockConstants.mockUser.getUsername())
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(applicationService, times(1)).getApplicationsByUsername(anyString());
@@ -65,6 +70,7 @@ public class ApplicationControllerTest {
     public void testCreateApplication() throws Exception {
         when(applicationService.createApplication(any())).thenReturn(MockConstants.mockApplication);
         mockMvc.perform(post("/applications")
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Mapper.convertToJSON(MockConstants.applicationDTO)))
                 .andExpect(status().isCreated());
@@ -79,6 +85,7 @@ public class ApplicationControllerTest {
     public void testUpdateApplication() throws Exception {
         when(applicationService.updateApplication(anyInt(), any())).thenReturn(MockConstants.mockApplication);
         mockMvc.perform(put("/applications/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Mapper.convertToJSON(MockConstants.applicationDTO2)))
                 .andExpect(status().isOk());
@@ -90,7 +97,8 @@ public class ApplicationControllerTest {
     //HAPPY PATH
     @Test
     public void testDeleteApplication() throws Exception {
-        mockMvc.perform(delete("/applications/{id}", 1))
+        mockMvc.perform(delete("/applications/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf()))
                 .andExpect(status().isOk());
 
         verify(applicationService, times(1)).deleteApplication(anyInt());
@@ -103,6 +111,7 @@ public class ApplicationControllerTest {
         when(applicationService.findApplicationsByKeyword(anyString())).thenReturn(MockConstants.mockApplications);
 
         mockMvc.perform(get("/applications")
+                .with(user("admin").roles("USER", "ADMIN"))
                 .param("keyword", anyString()))
                 .andExpect(status().isOk());
 

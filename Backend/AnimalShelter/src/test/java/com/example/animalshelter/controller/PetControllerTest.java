@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,7 +32,8 @@ public class PetControllerTest {
     @Test
     public void testGetAllPets() throws Exception {
         when(petService.getAllPets()).thenReturn(MockConstants.mockPets);
-        mockMvc.perform(get("/pets"))
+        mockMvc.perform(get("/pets")
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(petService, times(1)).getAllPets();
@@ -42,7 +45,8 @@ public class PetControllerTest {
     @Test
     public void testGetPetById() throws Exception {
         when(petService.getPetById(anyInt())).thenReturn(MockConstants.mockPet);
-        mockMvc.perform(get("/pets/{id}", 1))
+        mockMvc.perform(get("/pets/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(petService, times(1)).getPetById(anyInt());
@@ -55,6 +59,7 @@ public class PetControllerTest {
     public void testGetPetByType() throws Exception {
         when(petService.getPetByType(anyString())).thenReturn(MockConstants.mockPets);
         mockMvc.perform(get("/pets")
+                .with(user("admin").roles("USER", "ADMIN"))
                 .param("type", "dog"))
                 .andExpect(status().isOk());
 
@@ -65,9 +70,10 @@ public class PetControllerTest {
     //---GET FAVORITE PETS BY USERNAME---
     //HAPPY PATH
     @Test
-    public void testGetPetsByUserId() throws Exception {
+    public void testGetPetsByUsername() throws Exception {
         when(petService.getPetsByUsername(anyString())).thenReturn(MockConstants.mockPets);
-        mockMvc.perform(get("/pets/users/{id}", 1))
+        mockMvc.perform(get("/pets/users/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(petService, times(1)).getPetsByUsername(anyString());
@@ -79,7 +85,8 @@ public class PetControllerTest {
     @Test
     public void testGetPetByMicrochipId() throws Exception {
         when(petService.getPetByMicrochipId(anyInt())).thenReturn(MockConstants.mockPet);
-        mockMvc.perform(get("/pets/microchips/{id}", 1234567))
+        mockMvc.perform(get("/pets/microchips/{id}", 1234567)
+                .with(user("admin").roles("USER", "ADMIN")))
                 .andExpect(status().isOk());
 
         verify(petService, times(1)).getPetByMicrochipId(anyInt());
@@ -93,7 +100,8 @@ public class PetControllerTest {
         when(petService.createPet(any())).thenReturn(MockConstants.mockPet);
         mockMvc.perform(post("/pets")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(Mapper.convertToJSON(MockConstants.mockPetDTO)))
+                .content(Mapper.convertToJSON(MockConstants.mockPetDTO))
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf()))
                 .andExpect(status().isCreated());
 
         verify(petService, times(1)).createPet(any());
@@ -115,6 +123,7 @@ public class PetControllerTest {
 
         when(petService.updatePet(anyInt(), any())).thenReturn(MockConstants.mockPet);
         mockMvc.perform(put("/pets/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Mapper.convertToJSON(MockConstants.mockPetDTO2)))
                 .andExpect(status().isOk());
@@ -127,7 +136,8 @@ public class PetControllerTest {
     //HAPPY PATH
     @Test
     public void testDeletePet() throws Exception {
-        mockMvc.perform(delete("/pets/{id}", 1))
+        mockMvc.perform(delete("/pets/{id}", 1)
+                .with(user("admin").roles("USER", "ADMIN")).with(csrf()))
                 .andExpect(status().isOk());
 
         verify(petService, times(1)).deletePet(anyInt());
