@@ -100,15 +100,15 @@ public class ApplicationService {
         }
 
         Application application = mapToApplication(applicationDTO, existingUser); //map dto to application to save
-        Application savedApplication = applicationRepository.save(application); //need to save application first before it can be saved to pet in following loop
 
         if (application.getPets() != null) { //if the application specified interest in specific pets
             List<Pet> pets = application.getPets();
             for (Pet pet : pets) { //then loop through the pets
                 pet.getApplications().add(application); //and add this application to the pet
-                petRepository.save(pet); //manual save (can remove if cascading is added)
+                //petRepository.save(pet); //manual save (can remove if cascading is added)
             }
         }
+        Application savedApplication = applicationRepository.save(application); //need to save application first before it can be saved to pet in following loop
 
         //TODO also sends microservice notification with petIds, userId, and application Id
         return savedApplication;

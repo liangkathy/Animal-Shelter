@@ -92,6 +92,12 @@ public class PetService {
         return existingMicrochip.getPet();
     }
 
+    //get pets without microchips
+    public List<Pet> getMicrochipsWithoutMicrochip() throws HttpClientErrorException {
+        List<Pet> pets = petRepository.findAll();
+        return pets.stream().filter(pet -> pet.getMicrochip() == null).toList();
+    }
+
     //create new pet
     public Pet createPet(PetDTO petDTO) throws HttpClientErrorException {
         Pet pet = mapToPet(petDTO);
