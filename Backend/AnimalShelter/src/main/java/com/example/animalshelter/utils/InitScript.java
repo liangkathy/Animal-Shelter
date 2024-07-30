@@ -92,6 +92,10 @@ public class InitScript {
         var pet6 = createPet("Leaf", "other","Guinea Pig", LocalDate.of(2024,1,5), "Male", 2);
         petService.createPet(pet6);
 
+        var pet7 = createPet("Max", "dog","Golden Retriever", LocalDate.of(2023,2,8), "Male", 40);
+        petService.createPet(pet7);
+
+
         var microchipSet1 = createMicrochipDTOSet1(123456789, "24PetWatch");
         microchipService.createMicrochips(microchipSet1);
 
