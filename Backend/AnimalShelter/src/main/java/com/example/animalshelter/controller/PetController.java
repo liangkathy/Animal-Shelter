@@ -98,6 +98,21 @@ public class PetController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/microchips/null")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getPetsWithoutMicrochip() {
+        List<Pet> pets = petService.getMicrochipsWithoutMicrochip();
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(pets)
+                .message("Pets without microchip retrieved successfully")
+                .status(HttpStatus.OK)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
     //---POST---
     //create new pet
     @PostMapping
