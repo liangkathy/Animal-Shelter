@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
                     configuration.setAllowCredentials(true);
-                    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/")); //path used in react
+                    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5174", "http://localhost:8080")); //path used in react
                     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); //allow all
                     configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); //authorization holds jwt, content type => json body
                     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .addFilterAfter(new JwtRequestFilter(userDetailsServiceImpl, jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin/**", "/microchips/**", "/authorization").hasRole("ADMIN")//any admin endpoint available to admin only
-                        .requestMatchers("/users/**", "/applications/** ").hasRole("USER")
+                        .requestMatchers("/users/**", "/applications/**").hasRole("USER")
                         .requestMatchers("/login", "/signup", "/pets").permitAll()//no login needed to user these endpoints
                         .anyRequest().authenticated())
                         .csrf(AbstractHttpConfigurer::disable)
