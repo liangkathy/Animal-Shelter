@@ -3,6 +3,7 @@ package com.example.animalshelter.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -56,7 +57,6 @@ public class Pet {
     private Microchip microchip;
 
     //many-to-many relationship with user
-    @ToString.Exclude
     @JsonIgnore
     @ManyToMany(mappedBy = "favoritePets", cascade = {CascadeType.MERGE, CascadeType.PERSIST}) //when pet updated, update field in user
     private List<User> users = new ArrayList<>();

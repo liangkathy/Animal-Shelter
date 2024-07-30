@@ -3,6 +3,7 @@ package com.example.animalshelter.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,11 +43,10 @@ public class Application {
     //private String status;
 
     //many-to-many relationship with pet
-    @ManyToMany(mappedBy = "applications")
+    @ManyToMany(mappedBy = "applications", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     private List<Pet> pets = new ArrayList<>();
 
     //many-to-one relationship with user
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false) //application requires an associated user
     private User user;
