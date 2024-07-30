@@ -1,11 +1,9 @@
 package com.example.animalshelter.utils;
 
-import com.example.animalshelter.dto.ApplicationDTO;
-import com.example.animalshelter.dto.MicrochipDTO;
-import com.example.animalshelter.dto.PetDTO;
-import com.example.animalshelter.dto.UserUpdateDTO;
+import com.example.animalshelter.dto.*;
 import com.example.animalshelter.enums.Role;
 import com.example.animalshelter.model.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 
@@ -162,4 +160,16 @@ public class MockConstants {
 
     public static UserUpdateDTO mockUserUpdateDTO = createMockUserUpdateDTO("Jane", "Doe", "jane@example.com",
             "5121110000", "user321", "Password321", "Password123");
+
+
+    public static CommonResponse buildCommonResponse(boolean hasError, Object data) {
+        CommonResponse response = CommonResponse.builder()
+                .hasError(hasError)
+                .data(data)
+                .message("Success")
+                .status(HttpStatus.OK)
+                .build();
+
+        return response;
+    }
 }
