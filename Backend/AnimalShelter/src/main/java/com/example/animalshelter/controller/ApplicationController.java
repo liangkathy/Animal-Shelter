@@ -1,6 +1,7 @@
 package com.example.animalshelter.controller;
 
 import com.example.animalshelter.dto.ApplicationDTO;
+import com.example.animalshelter.dto.ApplicationStatusDTO;
 import com.example.animalshelter.dto.CommonResponse;
 import com.example.animalshelter.model.Application;
 import com.example.animalshelter.service.ApplicationService;
@@ -96,6 +97,21 @@ public class ApplicationController {
         return ResponseEntity.ok(response);
     }
 
+    //update application status by id
+    @PutMapping("/{id}/status")
+    public ResponseEntity<?> updateApplicationStatus(@PathVariable Integer id, @Valid @RequestBody ApplicationStatusDTO applicationStatusDTO) {
+        Application application = applicationService.updateApplicationStatus(id, applicationStatusDTO);
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(application)
+                .message("Application with id " + id + " updated successfully")
+                .status(HttpStatus.OK)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
     //---DELETE---
     //delete application by id
     @DeleteMapping("/{id}")
@@ -121,6 +137,21 @@ public class ApplicationController {
                 .hasError(false)
                 .data(applications)
                 .message("Applications with " + keyword + " retrieved successfully")
+                .status(HttpStatus.OK)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
+    //find applications by status
+    @GetMapping(params="status")
+    public ResponseEntity<?> getApplicationsByStatus(@RequestParam String status) {
+        List<Application> applications = applicationService.findApplicationsByStatus(status);
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(applications)
+                .message("Applications with " + status + " retrieved successfully")
                 .status(HttpStatus.OK)
                 .build();
 

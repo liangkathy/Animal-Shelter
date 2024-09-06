@@ -40,7 +40,7 @@ public class Application {
     private String response3;
 
     //potential idea - application status (reviewed, rejected, accepted)
-    //private String status;
+    private String status;
 
     //many-to-many relationship with pet
     @ManyToMany(mappedBy = "applications", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})

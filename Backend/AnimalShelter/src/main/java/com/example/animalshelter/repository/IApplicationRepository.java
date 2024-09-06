@@ -20,4 +20,6 @@ public interface IApplicationRepository extends JpaRepository<Application, Integ
             "lower(a.response3) LIKE lower(CONCAT('%',:keyword,'%'))")
     List<Application> findApplicationsByKeyword(@Param("keyword") String keyword);
 
+    List<Application> getApplicationsByStatus(String status);
+
 }

@@ -1,6 +1,7 @@
 package com.example.animalshelter.service;
 
 import com.example.animalshelter.dto.ApplicationDTO;
+import com.example.animalshelter.dto.ApplicationStatusDTO;
 import com.example.animalshelter.model.Application;
 import com.example.animalshelter.model.Pet;
 import com.example.animalshelter.model.User;
@@ -34,6 +35,7 @@ public class ApplicationService {
         application.setResponse2(applicationDTO.getResponse2());
         application.setResponse3(applicationDTO.getResponse3());
         application.setUser(existingUser);
+        application.setStatus("New");
 
         if(applicationDTO.getPetIds() != null) { //if pet ids are given
             List<Integer> existingPetIds = checkApplicationPets(existingUser);
@@ -143,6 +145,15 @@ public class ApplicationService {
         return applicationRepository.save(existingApplication);
     }
 
+    //update application status
+    public Application updateApplicationStatus(Integer id, ApplicationStatusDTO applicationStatusDTO) throws IllegalArgumentException, HttpClientErrorException {
+        Application existingApplication = applicationRepository.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Application with id " + id + " not found"));
+
+        existingApplication.setStatus(applicationStatusDTO.getStatus());
+
+        return applicationRepository.save(existingApplication);
+    }
+
     //delete application by id
     public void deleteApplication(Integer id) throws HttpClientErrorException {
         Application application = applicationRepository.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Application with id " + id + " not found"));
@@ -161,6 +172,16 @@ public class ApplicationService {
             return applications;
         } else {
             throw new IllegalArgumentException("Keyword cannot be blank");
+        }
+    }
+
+    //find applications by status
+    public List<Application> findApplicationsByStatus(String status) {
+        if(!status.isBlank()) {
+            List<Application> applications = applicationRepository.getApplicationsByStatus(status);
+            return applications;
+        } else {
+            throw new IllegalArgumentException("Status cannot be blank");
         }
     }
 
