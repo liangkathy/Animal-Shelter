@@ -96,10 +96,12 @@ const Microchip = () => {
         setIsAssignToPet(true)
         setChipId(id)
         setCompanyName(company)
+        console.log(petsWithoutChip)
     }
 
     const closeAssignToPetModal = () => {
         setIsAssignToPet(false)
+        console.log(petsWithoutChip)
     }
 
     const navigateToPet = (chipId) => {
@@ -108,9 +110,9 @@ const Microchip = () => {
         navigate(`/pets/${petId}`)
     }
 
-    useEffect(() => {
-        console.log(allPets);
-    },[allMicrochips])
+    // useEffect(() => {
+    //     console.log(allPets);
+    // },[allMicrochips])
 
     return (
         <section className={`microchip-database ${theme}`}>

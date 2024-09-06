@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
@@ -39,6 +39,8 @@ const AssignToPetModal = ({petsWithoutChip, setPetsWithoutChip, closeAssignToPet
             handleClose(response.data)
             setErrorMessage([null])
         }
+
+        
     }
 
     const handleClose = (chip) => {
@@ -50,7 +52,7 @@ const AssignToPetModal = ({petsWithoutChip, setPetsWithoutChip, closeAssignToPet
             setAllMicrochips(updatedChips)
         }
         if (formData.petId != null) {
-            const updatedPetsWithoutChip = petsWithoutChip.filter(id => id != parseInt(formData.petId))
+            const updatedPetsWithoutChip = petsWithoutChip.filter(pet => pet.id != parseInt(formData.petId))
             setPetsWithoutChip(updatedPetsWithoutChip)
         }
 

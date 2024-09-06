@@ -96,7 +96,7 @@ const AddMicrochipModalPage = ({pageTotal, petsWithoutChip, closeChipModal, addC
                     onChange={handleChange}
                     val={formData[currentPage - 1]?.company || ''} />
             </div>
-            <div className='pet-select'>
+            {/* <div className='pet-select'>
                 <label htmlFor='petId'>Assign Pet</label>
                 <select className='pet-dropdown' 
                     type="text" 
@@ -111,7 +111,7 @@ const AddMicrochipModalPage = ({pageTotal, petsWithoutChip, closeChipModal, addC
                         })
                     }
                 </select>
-            </div>
+            </div> */}
             
             <IoIosArrowBack onClick={prevPage} 
                 className={currentPage === 1 ? "hidden": "arrow-back chip-arrow"}
