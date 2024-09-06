@@ -3,6 +3,13 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+}
 
+.application-app-row {
+    border: 1px solid red;
+}
 
+.application-header-row {
+    font-weight: bold;
+    font-size: 1.02em;
 }
