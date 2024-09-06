@@ -1,5 +1,7 @@
 import { decodeToken, useJwt } from "react-jwt";
 
+// Calculate current age given date of birth
+//Given in years if 12 months or older
 export const calculateAge = (dob) => {
     const today = new Date();
     const birthDate = new Date(dob);
@@ -31,7 +33,7 @@ export const calculateAge = (dob) => {
     return ageString;
 }
 
-
+//Format given timestamp into MM/DD/yyyy hour:minute AM/PM
 export const timestampFormatter = (timestamp) => {
     const convertedTimestamp = new Date(timestamp) //parse into date object
 
@@ -55,6 +57,7 @@ export const timestampFormatter = (timestamp) => {
     return finalTimestamp
 }
 
+//Decode whether user is an admin from their JWT
 export const decodeJWTRoles = (token) => {
     let decode = {}
     try {
