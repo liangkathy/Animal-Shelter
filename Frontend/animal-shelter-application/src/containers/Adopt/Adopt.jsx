@@ -50,7 +50,7 @@ const Adopt = () => {
                 <IoIosArrowRoundForward size="2em"/>
             </Link>
 
-            <p className="learn-more">Learn more about the <Link to="/process&fees" className={`a-${theme}`}>Process & Fees</Link></p>
+            <p className="learn-more">Learn more about the <Link to="/unavailable" className={`a-${theme}`}>Process & Fees</Link></p>
         </section>
     )
 }
