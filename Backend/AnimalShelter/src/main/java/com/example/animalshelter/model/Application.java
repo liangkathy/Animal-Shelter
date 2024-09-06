@@ -39,7 +39,7 @@ public class Application {
     @NotBlank(message = "Response 3 is required")
     private String response3;
 
-    //potential idea - application status (reviewed, rejected, accepted)
+    //application status (new, contacting, rejected, accepted)
     private String status;
 
     //many-to-many relationship with pet

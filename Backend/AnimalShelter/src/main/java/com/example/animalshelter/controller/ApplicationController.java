@@ -21,6 +21,7 @@ public class ApplicationController {
 
     //---GET---
     //get all applications
+    //input: none, output: response entity with common response if ok
     @GetMapping
     public ResponseEntity<?> getAllApplications() {
         List<Application> applications = applicationService.getAllApplications();
@@ -36,6 +37,7 @@ public class ApplicationController {
     }
 
     //get applications by pet id
+    //input: pet id integer, output: response entity with common response if ok
     @GetMapping("/{id}")
     public ResponseEntity<?> getApplicationById(@PathVariable Integer id) {
         Application application = applicationService.getApplicationById(id);
@@ -50,7 +52,8 @@ public class ApplicationController {
         return ResponseEntity.ok(response);
     }
 
-    //get applications by user id
+    //get applications by username
+    //input: username string, output: response entity with common response if ok
     @GetMapping("/users/{username}")
     public ResponseEntity<?> getApplicationsByUsername(@PathVariable String username) {
         List<Application> applications = applicationService.getApplicationsByUsername(username);
@@ -65,8 +68,42 @@ public class ApplicationController {
         return ResponseEntity.ok(response);
     }
 
+    //JPQL
+    //find applications by keyword
+    //input: keyword string, output: response entity with common response if ok
+    @GetMapping(params="keyword")
+    public ResponseEntity<?> getApplicationsByKeyword(@RequestParam String keyword) {
+        List<Application> applications = applicationService.findApplicationsByKeyword(keyword);
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(applications)
+                .message("Applications with " + keyword + " retrieved successfully")
+                .status(HttpStatus.OK)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
+    //find applications by status
+    //input: status string, output: response entity with common response if ok
+    @GetMapping(params="status")
+    public ResponseEntity<?> getApplicationsByStatus(@RequestParam String status) {
+        List<Application> applications = applicationService.findApplicationsByStatus(status);
+
+        CommonResponse response = CommonResponse.builder()
+                .hasError(false)
+                .data(applications)
+                .message("Applications with " + status + " retrieved successfully")
+                .status(HttpStatus.OK)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
     //---POST---
     //create new application
+    //input: ApplicationDTO, output: response entity with common response if created
     @PostMapping
     public ResponseEntity<?> addApplication(@Valid @RequestBody ApplicationDTO applicationDTO) {
         Application application = applicationService.createApplication(applicationDTO);
@@ -83,6 +120,7 @@ public class ApplicationController {
 
     //---PUT or PATCH---
     //update application by id
+    //input: application id integer and ApplicationDTO, output: response entity with common response if ok
     @PutMapping("/{id}")
     public ResponseEntity<?> updateApplication(@PathVariable Integer id, @Valid @RequestBody ApplicationDTO applicationDTO) {
         Application application = applicationService.updateApplication(id, applicationDTO);
@@ -98,6 +136,7 @@ public class ApplicationController {
     }
 
     //update application status by id
+    //input: application id integer and ApplicationStatusDTO, output: response entity with common response if ok
     @PutMapping("/{id}/status")
     public ResponseEntity<?> updateApplicationStatus(@PathVariable Integer id, @Valid @RequestBody ApplicationStatusDTO applicationStatusDTO) {
         Application application = applicationService.updateApplicationStatus(id, applicationStatusDTO);
@@ -114,6 +153,7 @@ public class ApplicationController {
 
     //---DELETE---
     //delete application by id
+    //input: application id integer, output: response entity with common response if ok
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteApplication(@PathVariable Integer id) {
         applicationService.deleteApplication(id);
@@ -121,37 +161,6 @@ public class ApplicationController {
         CommonResponse response = CommonResponse.builder()
                 .hasError(false)
                 .message("Application with id " + id + " deleted successfully")
-                .status(HttpStatus.OK)
-                .build();
-
-        return ResponseEntity.ok(response);
-    }
-
-    //JPQL
-    //find applications by keyword
-    @GetMapping(params="keyword")
-    public ResponseEntity<?> getApplicationsByKeyword(@RequestParam String keyword) {
-        List<Application> applications = applicationService.findApplicationsByKeyword(keyword);
-
-        CommonResponse response = CommonResponse.builder()
-                .hasError(false)
-                .data(applications)
-                .message("Applications with " + keyword + " retrieved successfully")
-                .status(HttpStatus.OK)
-                .build();
-
-        return ResponseEntity.ok(response);
-    }
-
-    //find applications by status
-    @GetMapping(params="status")
-    public ResponseEntity<?> getApplicationsByStatus(@RequestParam String status) {
-        List<Application> applications = applicationService.findApplicationsByStatus(status);
-
-        CommonResponse response = CommonResponse.builder()
-                .hasError(false)
-                .data(applications)
-                .message("Applications with " + status + " retrieved successfully")
                 .status(HttpStatus.OK)
                 .build();
 

@@ -21,6 +21,7 @@ public class MicrochipController {
 
     //---GET---
     //get all microchips
+    //input: none, output: response entity with common response if ok
     @GetMapping
     public ResponseEntity<?> getAllMicrochips() {
         List<Microchip> microchips = microchipService.getAllMicrochips();
@@ -37,6 +38,7 @@ public class MicrochipController {
     }
 
     //get microchip by id
+    //input: microchip id integer, output: response entity with common response if ok
     @GetMapping("/{id}")
     public ResponseEntity<?> getMicrochipById(@PathVariable Integer id) {
         Microchip microchip = microchipService.getMicrochipById(id);
@@ -52,6 +54,7 @@ public class MicrochipController {
     }
 
     //get microchip by status
+    //input: status string, output: response entity with common response if ok
     @GetMapping(params = "available")
     public ResponseEntity<?> getMicrochipsByStatus(@RequestParam String available) {
         List<Microchip> microchips = microchipService.getMicrochipsByStatus(available);
@@ -68,6 +71,7 @@ public class MicrochipController {
 
     //---POST---
     //create new microchips (takes list)
+    //input: list of MicrchipDTOs, output: response entity with common response if created
     @PostMapping
     public ResponseEntity<?> addMicrochips(@Valid @RequestBody List<MicrochipDTO> microchipDTOS) {
         List<Microchip> microchips = microchipService.createMicrochips(microchipDTOS);
@@ -85,6 +89,7 @@ public class MicrochipController {
 
     //---PUT or PATCH---
     //update microchip by id
+    //input: microchip id integer and MicrochipDTO, output: response entity with common response if ok
     @PutMapping("/{id}")
     public ResponseEntity<?> updateMicrochips(@PathVariable Integer id, @Valid @RequestBody MicrochipDTO microchipDTO) {
         Microchip microchip = microchipService.updateMicrochip(id, microchipDTO);
@@ -101,6 +106,7 @@ public class MicrochipController {
 
     //---DELETE---
     //delete microchip by id
+    //input: microchip id integer, output: response entity with common response if ok
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMicrochip(@PathVariable Integer id) {
         microchipService.deleteMicrochip(id);

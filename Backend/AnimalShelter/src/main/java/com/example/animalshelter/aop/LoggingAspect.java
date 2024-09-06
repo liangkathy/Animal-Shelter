@@ -12,11 +12,13 @@ import java.util.Arrays;
 @Component
 public class LoggingAspect {
 
-    @Pointcut("execution(* com.example.animalshelter.*..*.*(..))") //for all service layers in program
+    //for all methods that run in the program
+    @Pointcut("execution(* com.example.animalshelter.*..*.*(..))")
     public void allMethods() {
     }
 
-    @Pointcut("execution(* com.example.animalshelter.controller..*.*(..))") //for all service layers in program
+    //for all controller methods in the program
+    @Pointcut("execution(* com.example.animalshelter.controller..*.*(..))")
     public void controllerMethods() {
     }
 

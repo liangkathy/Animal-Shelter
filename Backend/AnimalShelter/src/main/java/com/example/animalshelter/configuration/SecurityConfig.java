@@ -72,8 +72,4 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
-
-    //jwt decoder needed for testing with spring security
-
-
 }

@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +20,7 @@ public class AuthController {
     AuthService authService;
 
     //---LOGIN---
+    //input: LoginRequest record, output: response entity with common response if ok
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         String token = authService.loginAndGenerateToken(loginRequest);
@@ -35,6 +35,7 @@ public class AuthController {
 
     //---SIGNUP---
     //create new user - not admin
+    //input: User object, output: response entity with common response if created
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@Valid @RequestBody User user) throws Exception {
         User createdUser = userService.createUser(user);
@@ -49,6 +50,7 @@ public class AuthController {
     }
 
     //create new admin user - secured via SecurityConfig (admin only)
+    //input: User object, output: response entity with common response if created
     @PostMapping("/admin/signup")
     public ResponseEntity<?> createAdminUser(@Valid @RequestBody User user) {
         userService.createAdminUser(user);
@@ -61,6 +63,9 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    //---VERIFY ROLE---
+    //confirm if user is an admin using backend
+    ////input: JWT string request header, output: response entity with common response if ok
     @GetMapping("/authorization")
     public ResponseEntity<?> verifyAdmin(@RequestHeader (name="Authorization") String token) {
 

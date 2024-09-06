@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface IMicrochipRepository extends JpaRepository<Microchip, Integer> {
+    //get microchips by availability status
+    //input: available boolean (true if available and false if not), output: list of Microchip objects
     List<Microchip> findMicrochipsByAvailable(boolean available);
 }

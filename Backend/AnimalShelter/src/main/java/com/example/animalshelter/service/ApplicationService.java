@@ -92,6 +92,26 @@ public class ApplicationService {
         return applicationRepository.getApplicationsByUser(existingUser);
     }
 
+    //find applications by keyword (JPQL)
+    public List<Application> findApplicationsByKeyword(String keyword) {
+        if(!keyword.isBlank()) {
+            List<Application> applications = applicationRepository.findApplicationsByKeyword(keyword);
+            return applications;
+        } else {
+            throw new IllegalArgumentException("Keyword cannot be blank");
+        }
+    }
+
+    //find applications by status
+    public List<Application> findApplicationsByStatus(String status) {
+        if(!status.isBlank()) {
+            List<Application> applications = applicationRepository.getApplicationsByStatus(status);
+            return applications;
+        } else {
+            throw new IllegalArgumentException("Status cannot be blank");
+        }
+    }
+
     //create new application
     public Application createApplication(ApplicationDTO applicationDTO) throws UsernameNotFoundException, HttpClientErrorException {
         String username = applicationDTO.getUsername();
@@ -163,26 +183,4 @@ public class ApplicationService {
 
         applicationRepository.delete(application);
     }
-
-
-    //find applications by keyword (JPQL)
-    public List<Application> findApplicationsByKeyword(String keyword) {
-        if(!keyword.isBlank()) {
-            List<Application> applications = applicationRepository.findApplicationsByKeyword(keyword);
-            return applications;
-        } else {
-            throw new IllegalArgumentException("Keyword cannot be blank");
-        }
-    }
-
-    //find applications by status
-    public List<Application> findApplicationsByStatus(String status) {
-        if(!status.isBlank()) {
-            List<Application> applications = applicationRepository.getApplicationsByStatus(status);
-            return applications;
-        } else {
-            throw new IllegalArgumentException("Status cannot be blank");
-        }
-    }
-
 }

@@ -20,6 +20,7 @@ public class UserController {
 
     //---GET---
     //get all users
+    //input: none, output: response entity with common response if ok
     @GetMapping
     public ResponseEntity<?> getAllUsers() {
         List<User> users = userService.getAllUsers();
@@ -35,6 +36,7 @@ public class UserController {
     }
 
     //get user by id
+    //input: user id integer, output: response entity with common response if ok
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Integer id) {
         User user = userService.getUserById(id);
@@ -50,6 +52,7 @@ public class UserController {
     }
 
     //get user by username
+    //input: username string, output: response entity with common response if ok
     @GetMapping(params="username")
     public ResponseEntity<?> getUserByUsername(@RequestParam String username) {
         User user = userService.getUserByUsername(username);
@@ -66,6 +69,7 @@ public class UserController {
 
     //---POST---
     //create new user
+    //input: User object, output: response entity with common response if created
     @PostMapping
     public ResponseEntity<?> addUser(@Valid @RequestBody User user) {
         User newUser = userService.createUser(user);
@@ -82,6 +86,7 @@ public class UserController {
 
     //---PUT or PATCH---
     //update user by username
+    //input: username string, output: response entity with common response if ok
     @PutMapping("/{username}")
     public ResponseEntity<?> updateUserByUsername(@PathVariable String username, @Valid @RequestBody UserUpdateDTO userUpdateDTO) {
         User user = userService.updateUserByUsername(username, userUpdateDTO);
@@ -97,6 +102,7 @@ public class UserController {
     }
 
     //add pet to user (favorite)
+    //input: username string and pet id integer, output: response entity with common response if ok
     @PutMapping("/{username}/pets/{petId}/add")
     public ResponseEntity<?> addPetToUser(@PathVariable String username, @PathVariable Integer petId) {
         User user = userService.addPetToUser(username, petId);
@@ -111,6 +117,8 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    //remove pet from user (unfavorite)
+    //input: username string and pet id integer, output: response entity with common response if ok
     @PutMapping("/{username}/pets/{petId}/delete")
     public ResponseEntity<?> deletePetFromUser(@PathVariable String username, @PathVariable Integer petId) {
         User user = userService.deletePetFromUser(username, petId);
@@ -129,6 +137,7 @@ public class UserController {
 
     //---DELETE---
     //delete user by username
+    //input: username string, output: response entity with common response if ok
     @DeleteMapping("/{username}")
     public ResponseEntity<?> deleteUser(@PathVariable String username) {
         userService.deleteUserByUsername(username);
@@ -141,6 +150,5 @@ public class UserController {
 
         return ResponseEntity.ok(response);
     }
-
 
 }

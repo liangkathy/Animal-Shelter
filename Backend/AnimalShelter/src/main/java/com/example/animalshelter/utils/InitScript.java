@@ -3,8 +3,6 @@ package com.example.animalshelter.utils;
 import com.example.animalshelter.dto.MicrochipDTO;
 import com.example.animalshelter.dto.PetDTO;
 import com.example.animalshelter.model.Address;
-import com.example.animalshelter.model.Microchip;
-import com.example.animalshelter.model.Pet;
 import com.example.animalshelter.model.User;
 import com.example.animalshelter.service.MicrochipService;
 import com.example.animalshelter.service.PetService;
@@ -31,6 +29,9 @@ public class InitScript {
     @Autowired
     private MicrochipService microchipService;
 
+
+    //event listener to initialize objects when application is ready
+    //output: User object with admin access, User object without admin access, 8 Pet objects, 10 Microchip objects
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReadyEvent() {
         log.info("Starting application ready");

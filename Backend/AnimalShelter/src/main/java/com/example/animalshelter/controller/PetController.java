@@ -21,6 +21,7 @@ public class PetController {
 
     //---GET---
     //get all pets
+    //input: none, output: response entity with common response if ok
     @GetMapping
     public ResponseEntity<?> getAllPets() {
         List<Pet> pets = petService.getAllPets();
@@ -37,6 +38,7 @@ public class PetController {
     }
 
     //get pet by id
+    //input: pet id integer, output: response entity with common response if ok
     @GetMapping("/{id}")
     public ResponseEntity<?> getPetById(@PathVariable Integer id) {
         Pet pet = petService.getPetById(id);
@@ -52,6 +54,7 @@ public class PetController {
     }
 
     //get pet by type
+    //input: pet type string ("dog", "cat", or "other", output: response entity with common response if ok
     @GetMapping(params="type")
     public ResponseEntity<?> getPetsByType(@RequestParam("type") String type) {
         List<Pet> pets = petService.getPetByType(type);
@@ -67,6 +70,7 @@ public class PetController {
     }
 
     //get pets by username (favorited)
+    //input: username, output: response entity with common response if ok
     @GetMapping("/users/{username}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getPetsByUsername(@PathVariable String username) {
@@ -83,6 +87,7 @@ public class PetController {
     }
 
     //get pet by microchip id
+    //input: microchip id integer, output: response entity with common response if ok
     @GetMapping("/microchips/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getPetsByMicrochipId(@PathVariable Integer id) {
@@ -98,6 +103,8 @@ public class PetController {
         return ResponseEntity.ok(response);
     }
 
+    //get pets without a microchip
+    //input: none, output: response entity with common response if ok
     @GetMapping("/microchips/null")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getPetsWithoutMicrochip() {
@@ -115,6 +122,7 @@ public class PetController {
 
     //---POST---
     //create new pet
+    //input: PetDTO, output: response entity with common response if created
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addPet(@Valid @RequestBody PetDTO petDTO) {
@@ -132,6 +140,7 @@ public class PetController {
 
     //---PUT or PATCH---
     //update pet by id
+    //input: pet id integer and PetDTO, output: response entity with common response if ok
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updatePet(@PathVariable Integer id, @Valid @RequestBody PetDTO petDTO) {
@@ -150,6 +159,7 @@ public class PetController {
 
     //---DELETE---
     //delete pet by id
+    //input: pet id integer, output: response entity with common response if ok
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deletePet(@PathVariable Integer id) {

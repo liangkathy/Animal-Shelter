@@ -21,7 +21,7 @@ public class ApplicationDTO {
     @NotBlank(message = "Response 3 is required")
     private String response3;
 
-    private List<Integer> petIds; //might need this to be a list of pet names for front end
+    private List<Integer> petIds;
 
     @NotNull(message = "User is required")
     private String username;
