@@ -17,3 +17,81 @@
 .app-a {
     margin-left: 15px
 }
+
+.admin-app-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 130px;
+}
+
+.admin-app-details-container h4 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.admin-app-body {
+    display: flex;
+    margin: 50px;
+}
+
+.status-select {
+    display: flex;
+    gap: 10px;
+}
+
+.app-status-select {
+    width: 85%;
+    max-width: 160px;
+}
+
+.app-col-label {
+    width: 85%;
+    font-weight: 600;
+}
+
+.app-field-label {
+    font-weight: 600;
+    padding-right: 10px;
+    width: 140px;
+}
+
+.app-response {
+    margin-left: 10px;
+}
+
+.applicant-response-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.applicant-response-details tr {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 40%;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: fit-content;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-dark {
+    background-color: rgb(49, 49, 49);
+}
+
+.panel-light {
+    background-color: rgb(236, 236, 233);
+}

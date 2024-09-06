@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ApplicationsContext } from "../../contexts/ApplicationsContext"
 import './Application.css'
 import { Link } from "react-router-dom"
@@ -23,18 +23,24 @@ const Application = () => {
                         ) : (
                             applications.map((app, i) => { 
                                 return (
-                                <Link key={i} to={`/applications/${app.id}`} className={`a-${theme}`}>
-                                    <div className="app-label">
-                                        
-                                        {app.pets.length == 0 ? "Application" : `Application for ${app.pets.map(pet => pet.name).join(' & ')}`}
-                                        
-                                    </div>
-                                    <div>Submitted at: {timestampFormatter(app.timestamp)}</div>
-                                
-                                </Link>
+                                <>
+                                    <Link key={i} to={`/applications/${app.id}`} className={`a-${theme}`}>
+                                        <div className="app-label">
+                                            
+                                            {app.pets.length == 0 ? "Application" : `Application for ${app.pets.map(pet => pet.name).join(' & ')}`}
+                                            
+                                        </div>
+                                        <div>Submitted at: {timestampFormatter(app.timestamp)}</div>
+                                    
+                                    </Link>
+                                </>
                                 )
                         })
                     )
+                }
+                {
+                    applications &&
+                    applications.length > 0 && <p>Want to submit another application? Apply <Link to="/apply" className={`a-${theme}`}>here</Link></p>
                 }
             </div>
 

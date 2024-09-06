@@ -12,6 +12,7 @@ import { deleteData } from '../../api/api.js'
 const ApplicationDetails = () => {
     const navigate = useNavigate()
     const {theme} = useContext(ThemeContext)
+    const {applications} = useContext(ApplicationsContext)
     const {applicationId} = useParams()
     const app = applications.find(a => a.id === parseInt(applicationId))
 
@@ -45,7 +46,7 @@ const ApplicationDetails = () => {
 
             <div className="application-details">
                 <h4>Application Details</h4>
-                <div>Pet(s): {app.pets.map(pet => pet.name).join(' & ')}</div>
+                <div>Pet(s) applied for: {app.pets.map(pet => pet.name).join(' & ')}</div>
 
                 <div>
                     <div className='app-q'>Question 1: Tell us about your household, such as other pets, family members, or activity level.</div>
