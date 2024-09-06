@@ -49,3 +49,7 @@ h4 {
   font-family: "Cherry Bomb One", sans-serif;
   letter-spacing: 1px;
 }
+
+select {
+  border-radius: 4px;
+}
