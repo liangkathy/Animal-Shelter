@@ -35,11 +35,13 @@ import Microchip from './containers/Microchip/Microchip.jsx'
 import { UserPathContext } from './contexts/UserPathContext.js'
 import AdminPet from './containers/AdminPet/AdminPet.jsx'
 import AdminApplication from './containers/AdminApplication/AdminApplication.jsx'
+import AdminAppDetails from './components/ApplicationDetails/AdminAppDetails.jsx'
+import { AdminAppsContext } from './contexts/AdminAppsContext.js'
 
 
 const App = () => {
-  const[theme, setTheme] = useState("light")
-  const[currentUsername, setCurrentUsername] = useState(null)
+  const [theme, setTheme] = useState("light")
+  const [currentUsername, setCurrentUsername] = useState(null)
   const [isAdminPath, setIsAdminPath] = useState(false)
   const [isUserPath, setIsUserPath] = useState(true)
   const [allPets, setAllPets] = useState([])
@@ -47,13 +49,13 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-        const response = await getDataPublic("pets")
-        if (response.hasError) {
-            console.log("message", response.message);
-        }
-        setAllPets(response.data)
+      const response = await getDataPublic("pets")
+      if (response.hasError) {
+        console.log("message", response.message);
+      }
+      setAllPets(response.data)
     }
-    
+
     fetchData();
   }, [])
 
@@ -61,68 +63,87 @@ const App = () => {
 
   useEffect(() => {
     const username = sessionStorage.getItem("username");
-    
-    const fetchData = async () => {
-        const response = await getData(`pets/users/${username}`)
-        
-        if (response.hasError) {
-            console.log("message", response.message);
 
-        }
-        //setFavoritePets(response.data)
-        const petIds = response.data ? response.data.map(pet => pet.id.valueOf()): [];
-        setFavoritedPetIds(petIds);
+    const fetchData = async () => {
+      const response = await getData(`pets/users/${username}`)
+
+      if (response.hasError) {
+        console.log("message", response.message);
+
+      }
+      //setFavoritePets(response.data)
+      const petIds = response.data ? response.data.map(pet => pet.id.valueOf()) : [];
+      setFavoritedPetIds(petIds);
     }
-    
+
     fetchData();
 
   }, [])
 
-   const [applications, setApplications] = useState([])
+  const [applications, setApplications] = useState([])
 
   useEffect(() => {
     const username = sessionStorage.getItem("username");
-    
+
     const fetchData = async () => {
-        const response = await getData(`applications/users/${username}`)
-       
-        if (response.hasError) {
-            console.log("message", response.message);
-        }
-        setApplications(response.data)
+      const response = await getData(`applications/users/${username}`)
+
+      if (response.hasError) {
+        console.log("message", response.message);
+      }
+      setApplications(response.data)
     }
-    
+
+    fetchData();
+
+  }, [])
+
+  const [allApplications, setAllApplications] = useState([])
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      const response = await getData(`applications`)
+      console.log(response);
+
+      if (response.hasError) {
+        console.log("message", response.message);
+      }
+      setAllApplications(response.data)
+    }
+
     fetchData();
 
   }, [])
 
   return (
-    <ThemeContext.Provider value={{theme, setTheme}}>
-      <AuthContext.Provider value={{currentUsername, setCurrentUsername}}>
-        <PetsContext.Provider value={{allPets, setAllPets}}>
-          <FavoritesContext.Provider value={{favoritedPetIds, setFavoritedPetIds}}>
-            <ApplicationsContext.Provider value={{applications, setApplications}}>
-              <AdminPathContext.Provider value={{isAdminPath, setIsAdminPath}}>
-                <UserPathContext.Provider value={{isUserPath, setIsUserPath}}>
-  
-                    <Header isLogin={isLogin} setIsLogin={setIsLogin}/>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <AuthContext.Provider value={{ currentUsername, setCurrentUsername }}>
+        <PetsContext.Provider value={{ allPets, setAllPets }}>
+          <FavoritesContext.Provider value={{ favoritedPetIds, setFavoritedPetIds }}>
+            <ApplicationsContext.Provider value={{ applications, setApplications }}>
+              <AdminPathContext.Provider value={{ isAdminPath, setIsAdminPath }}>
+                <UserPathContext.Provider value={{ isUserPath, setIsUserPath }}>
+                  <AdminAppsContext.Provider value={{ allApplications, setAllApplications }}>
+
+                    <Header isLogin={isLogin} setIsLogin={setIsLogin} />
 
                     <Routes>
-                      <Route path="/auth" element={<Auth isLogin={isLogin} setIsLogin={setIsLogin}/>} />
+                      <Route path="/auth" element={<Auth isLogin={isLogin} setIsLogin={setIsLogin} />} />
                       <Route path="/" element={<Home />} />
                       <Route path="/adopt" element={<Adopt />} />
-                      <Route path="/adopt/all" element={<AdoptAll setIsLogin={setIsLogin}/>} />
-                      <Route path="/adopt/dogs" element={<AdoptDogs setIsLogin={setIsLogin}/>} />
-                      <Route path="/adopt/cats" element={<AdoptCats setIsLogin={setIsLogin}/>} />
-                      <Route path="/adopt/other" element={<AdoptOther setIsLogin={setIsLogin}/>} />
+                      <Route path="/adopt/all" element={<AdoptAll setIsLogin={setIsLogin} />} />
+                      <Route path="/adopt/dogs" element={<AdoptDogs setIsLogin={setIsLogin} />} />
+                      <Route path="/adopt/cats" element={<AdoptCats setIsLogin={setIsLogin} />} />
+                      <Route path="/adopt/other" element={<AdoptOther setIsLogin={setIsLogin} />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/pets/:petId" element={<PetDetails setIsLogin={setIsLogin}/>} />
+                      <Route path="/pets/:petId" element={<PetDetails setIsLogin={setIsLogin} />} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/*" element={<Error />} />
                       <Route path="/unavailable" element={<UnderConstruction />} />
                       <Route path="/accessdenied" element={<ForbiddenError />} />
-                      <Route path="/forgotpassword" element={<ForgotPassword />} />  
-                      <Route path="/favorites" element={<Favorites /> } />
+                      <Route path="/forgotpassword" element={<ForgotPassword />} />
+                      <Route path="/favorites" element={<Favorites />} />
                       <Route path="/applications" element={<Application />} />
                       <Route path="/apply" element={<Apply />} />
                       <Route path="/apply/success" element={<ApplySuccess />} />
@@ -133,11 +154,12 @@ const App = () => {
                       <Route path="/admin/microchips" element={<Microchip />} />
                       <Route path="/admin/pets" element={<AdminPet />} />
                       <Route path="/admin/applications" element={<AdminApplication />} />
-                      
+                      <Route path="/admin/applications/:applicationId" element={<AdminAppDetails />} />
+
                     </Routes>
 
                     <Footer />
-           
+                  </AdminAppsContext.Provider>
                 </UserPathContext.Provider>
               </AdminPathContext.Provider>
             </ApplicationsContext.Provider>
